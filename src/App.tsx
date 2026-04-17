@@ -4,6 +4,7 @@ import {
   formatBeastDisplayName,
   getArchetypeBeast,
   getArchetypeRarity,
+  isValidArchetypeCode,
   letterKeyPage,
   questions,
   traitMeta,
@@ -43,13 +44,16 @@ function buildQuizDeck(bank: Question[]): Question[] {
 type QuizScreen = 'intro' | 'quiz' | 'result';
 type Tab = AppTab;
 
+/** Letter for scoring + option index in the shuffled deck (some questions reuse the same letter twice). */
+type QuizAnswer = { letter: Letter; optionIndex: number };
+
 const AXIS_EMOJI: Record<Axis, string> = {
   cognitive: '🧠',
   emotional: '⚡',
   social: '🎭',
 };
 
-function getWinningLetter(axis: Axis, answers: Record<string, Letter>): Letter {
+function getWinningLetter(axis: Axis, answers: Record<string, QuizAnswer>): Letter {
   const tally: Record<Letter, number> = {
     T: 0,
     A: 0,
@@ -64,7 +68,7 @@ function getWinningLetter(axis: Axis, answers: Record<string, Letter>): Letter {
   questions
     .filter((q) => q.axis === axis)
     .forEach((q) => {
-      const selected = answers[q.id];
+      const selected = answers[q.id]?.letter;
       if (selected) tally[selected] += 1;
     });
 
@@ -89,8 +93,22 @@ function ArchetypeDetailInner({
 }) {
   const beast = getArchetypeBeast(code);
   const rarity = getArchetypeRarity(code);
-  const letters = lettersFromCode(code);
   const beastLabel = formatBeastDisplayName(beast.beast);
+
+  if (!isValidArchetypeCode(code)) {
+    return (
+      <>
+        <p className="archetype-invalid-msg" id={headingId}>
+          That isn’t a valid 3-letter code (use T/A, S/R/D, P/I/W — e.g. TSP).
+        </p>
+        <p className="archetype-invalid-sub">
+          Pick a card from Personality Types or finish the quiz for a real code.
+        </p>
+      </>
+    );
+  }
+
+  const letters = lettersFromCode(code);
 
   return (
     <>
@@ -172,7 +190,7 @@ function App() {
   );
   const [screen, setScreen] = useState<QuizScreen>('intro');
   const [index, setIndex] = useState(0);
-  const [answers, setAnswers] = useState<Record<string, Letter>>({});
+  const [answers, setAnswers] = useState<Record<string, QuizAnswer>>({});
   const [typesDetailCode, setTypesDetailCode] = useState<string | null>(() =>
     routeInit.mode === 'type' ? routeInit.code : null,
   );
@@ -181,11 +199,21 @@ function App() {
 
   const quizDeck = useMemo(
     () => buildQuizDeck(questions),
-    [quizNonce, questions],
+    [quizNonce],
   );
 
   const current = quizDeck[index];
-  const progress = ((index + 1) / quizDeck.length) * 100;
+
+  useEffect(() => {
+    if (activeTab !== 'quiz' || screen !== 'quiz') return;
+    if (!quizDeck.length) return;
+    if (index >= quizDeck.length) {
+      setIndex(quizDeck.length - 1);
+    }
+  }, [activeTab, screen, quizDeck.length, index]);
+
+  const progress =
+    quizDeck.length > 0 ? ((index + 1) / quizDeck.length) * 100 : 0;
 
   const resultCode = screen === 'result' ? quizResultCode : null;
 
@@ -200,6 +228,7 @@ function App() {
   }, []);
 
   const openTypesModal = useCallback((code: string) => {
+    if (!isValidArchetypeCode(code)) return;
     setActiveTab('types');
     setTypesDetailCode(code);
     window.history.pushState(null, '', buildTypePath(code));
@@ -236,7 +265,7 @@ function App() {
     window.history.replaceState(null, '', buildTabPath('quiz'));
   };
 
-  const finishQuiz = (nextAnswers: Record<string, Letter>) => {
+  const finishQuiz = (nextAnswers: Record<string, QuizAnswer>) => {
     const cognitive = getWinningLetter('cognitive', nextAnswers);
     const emotional = getWinningLetter('emotional', nextAnswers);
     const social = getWinningLetter('social', nextAnswers);
@@ -245,8 +274,15 @@ function App() {
     setScreen('result');
   };
 
-  const chooseOption = (question: Question, letter: Letter) => {
-    const next = { ...answers, [question.id]: letter };
+  const chooseOption = (
+    question: Question,
+    optionIndex: number,
+    letter: Letter,
+  ) => {
+    const next = {
+      ...answers,
+      [question.id]: { letter, optionIndex },
+    };
     if (index === quizDeck.length - 1) {
       finishQuiz(next);
       return;
@@ -254,6 +290,11 @@ function App() {
     setAnswers(next);
     setIndex((i) => i + 1);
   };
+
+  const goBackInQuiz = useCallback(() => {
+    if (index <= 0) return;
+    setIndex((i) => i - 1);
+  }, [index]);
 
   const copyShareLink = () => {
     if (!resultCode) return;
@@ -389,32 +430,70 @@ function App() {
               )}
 
               {activeTab === 'quiz' && screen === 'quiz' && (
-                <main className="card quiz-card">
-                  <header className="quiz-head">
-                    <p className="pill">
-                      Question {index + 1} / {quizDeck.length}
-                    </p>
-                    <div className="progress-wrap">
-                      <div
-                        className="progress"
-                        style={{ width: `${progress}%` }}
-                      />
-                    </div>
-                  </header>
+                <>
+                  {quizDeck.length > 0 && current ? (
+                    <main className="card quiz-card">
+                      <header className="quiz-head">
+                        <div className="quiz-head-row">
+                          <p className="pill quiz-head-pill">
+                            Question {index + 1} / {quizDeck.length}
+                          </p>
+                          {index > 0 ? (
+                            <button
+                              type="button"
+                              className="btn quiz-back-btn"
+                              onClick={goBackInQuiz}
+                              aria-label="Previous question"
+                            >
+                              ← Previous
+                            </button>
+                          ) : null}
+                        </div>
+                        <div className="progress-wrap">
+                          <div
+                            className="progress"
+                            style={{ width: `${progress}%` }}
+                          />
+                        </div>
+                      </header>
 
-                  <h2>{current.prompt}</h2>
-                  <div className="options">
-                    {current.options.map((option, oi) => (
+                      <h2>{current.prompt}</h2>
+                      <div className="options">
+                        {current.options.map((option, oi) => {
+                          const selected =
+                            answers[current.id]?.optionIndex === oi;
+                          return (
+                            <button
+                              key={`${current.id}-o${oi}`}
+                              type="button"
+                              className={`btn option-btn${
+                                selected ? ' option-btn--selected' : ''
+                              }`}
+                              onClick={() =>
+                                chooseOption(current, oi, option.letter)
+                              }
+                            >
+                              <span>{option.text}</span>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </main>
+                  ) : (
+                    <main className="card quiz-card">
+                      <p className="quiz-empty-msg">
+                        The quiz couldn’t load. Try starting again.
+                      </p>
                       <button
-                        key={`${current.id}-o${oi}`}
-                        className="btn option-btn"
-                        onClick={() => chooseOption(current, option.letter)}
+                        type="button"
+                        className="btn btn-primary"
+                        onClick={startQuiz}
                       >
-                        <span>{option.text}</span>
+                        Start quiz
                       </button>
-                    ))}
-                  </div>
-                </main>
+                    </main>
+                  )}
+                </>
               )}
 
               {activeTab === 'quiz' && screen === 'result' && resultCode && (
