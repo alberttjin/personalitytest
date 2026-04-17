@@ -1,5 +1,15 @@
 import { isValidArchetypeCode } from './data';
 
+/** Valid tab identifier (matches UI); URL slugs differ — see `TAB_SEGMENT`. */
+export type AppTab = 'quiz' | 'types' | 'guide';
+
+/** URL path segment after the base prefix for each tab */
+const TAB_SEGMENT: Record<AppTab, string> = {
+  quiz: 'quiz',
+  types: 'personality-types',
+  guide: 'letter-key',
+};
+
 /** Path segments before app routes, e.g. ['personalitytest'] on GitHub Pages. */
 export function pathPrefixSegments(): string[] {
   const raw = (import.meta.env.BASE_URL || '/').replace(/^\/+|\/+$/g, '');
@@ -11,28 +21,40 @@ export function buildTypePath(code: string): string {
   return '/' + [...prefix, 'type', code].join('/');
 }
 
+export function buildTabPath(tab: AppTab): string {
+  const prefix = pathPrefixSegments();
+  return '/' + [...prefix, TAB_SEGMENT[tab]].join('/');
+}
+
 export function buildTypeShareUrl(code: string): string {
   return `${window.location.origin}${buildTypePath(code)}`;
 }
 
-/** App root with trailing slash when nested (GitHub project page). */
+/** Root of the SPA (base URL only), e.g. `/` or `/personalitytest/` */
 export function buildHomePath(): string {
   const prefix = pathPrefixSegments();
   if (!prefix.length) return '/';
   return `/${prefix.join('/')}/`;
 }
 
-/** e.g. TRP from /personalitytest/type/TRP or /type/TRP in dev */
-export function parseTypeCodeFromPath(): string | null {
+export type ParsedAppRoute =
+  | { mode: 'type'; code: string }
+  | { mode: 'tab'; tab: AppTab };
+
+function restPathAfterPrefix(): string[] {
   const pathParts = window.location.pathname.split('/').filter(Boolean);
   const prefix = pathPrefixSegments();
-  if (prefix.length) {
-    if (pathParts.length < prefix.length) return null;
-    for (let i = 0; i < prefix.length; i++) {
-      if (pathParts[i] !== prefix[i]) return null;
-    }
+  if (!prefix.length) return pathParts;
+  if (pathParts.length < prefix.length) return [];
+  for (let i = 0; i < prefix.length; i++) {
+    if (pathParts[i] !== prefix[i]) return [];
   }
-  const rest = prefix.length ? pathParts.slice(prefix.length) : pathParts;
+  return pathParts.slice(prefix.length);
+}
+
+/** e.g. TRP from `/personalitytest/type/TRP` or `/type/TRP` in dev */
+export function parseTypeCodeFromPath(): string | null {
+  const rest = restPathAfterPrefix();
   if (rest[0] === 'type' && rest[1]) {
     const code = rest[1].trim().toUpperCase();
     if (!isValidArchetypeCode(code)) return null;
@@ -41,10 +63,27 @@ export function parseTypeCodeFromPath(): string | null {
   return null;
 }
 
+export function parseAppRoute(): ParsedAppRoute {
+  const rest = restPathAfterPrefix();
+
+  if (rest[0] === 'type' && rest[1]) {
+    const code = rest[1].trim().toUpperCase();
+    if (isValidArchetypeCode(code)) return { mode: 'type', code };
+  }
+
+  if (rest[0] === TAB_SEGMENT.quiz) return { mode: 'tab', tab: 'quiz' };
+  if (rest[0] === TAB_SEGMENT.types) return { mode: 'tab', tab: 'types' };
+  if (rest[0] === TAB_SEGMENT.guide) return { mode: 'tab', tab: 'guide' };
+
+  return { mode: 'tab', tab: 'quiz' };
+}
+
+export type InitialAppRoute = ParsedAppRoute;
+
 /**
- * Legacy ?code=TRP → replace with /type/TRP. Returns modal type code if any.
+ * First paint: legacy `?code=` → `/type/CODE`, else pathname → tab or type modal.
  */
-export function getInitialTypesRoute(): { typeCode: string | null } {
+export function getInitialAppRoute(): InitialAppRoute {
   const params = new URLSearchParams(window.location.search);
   const legacy = params.get('code');
   if (legacy && isValidArchetypeCode(legacy)) {
@@ -54,7 +93,7 @@ export function getInitialTypesRoute(): { typeCode: string | null } {
       '',
       `${buildTypePath(code)}${window.location.hash}`,
     );
-    return { typeCode: code };
+    return { mode: 'type', code };
   }
-  return { typeCode: parseTypeCodeFromPath() };
+  return parseAppRoute();
 }

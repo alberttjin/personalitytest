@@ -13,11 +13,12 @@ import {
   type Question,
 } from './data';
 import {
-  buildHomePath,
+  buildTabPath,
   buildTypePath,
   buildTypeShareUrl,
-  getInitialTypesRoute,
-  parseTypeCodeFromPath,
+  getInitialAppRoute,
+  parseAppRoute,
+  type AppTab,
 } from './urlRoutes';
 
 function shuffleArray<T>(items: readonly T[]): T[] {
@@ -41,7 +42,7 @@ function buildQuizDeck(bank: Question[]): Question[] {
 }
 
 type QuizScreen = 'intro' | 'quiz' | 'result';
-type Tab = 'quiz' | 'types' | 'guide';
+type Tab = AppTab;
 
 const AXIS_EMOJI: Record<Axis, string> = {
   cognitive: '🧠',
@@ -161,15 +162,15 @@ function ArchetypeDetailInner({
 }
 
 function App() {
-  const routeInit = useMemo(() => getInitialTypesRoute(), []);
+  const routeInit = useMemo(() => getInitialAppRoute(), []);
   const [activeTab, setActiveTab] = useState<Tab>(() =>
-    routeInit.typeCode ? 'types' : 'quiz',
+    routeInit.mode === 'type' ? 'types' : routeInit.tab,
   );
   const [screen, setScreen] = useState<QuizScreen>('intro');
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<string, Letter>>({});
-  const [typesDetailCode, setTypesDetailCode] = useState<string | null>(
-    () => routeInit.typeCode,
+  const [typesDetailCode, setTypesDetailCode] = useState<string | null>(() =>
+    routeInit.mode === 'type' ? routeInit.code : null,
   );
   const [quizResultCode, setQuizResultCode] = useState<string | null>(null);
   const [quizNonce, setQuizNonce] = useState(0);
@@ -188,6 +189,12 @@ function App() {
     typeof navigator !== 'undefined' &&
     typeof navigator.share === 'function';
 
+  const goToTab = useCallback((tab: Tab) => {
+    setTypesDetailCode(null);
+    setActiveTab(tab);
+    window.history.pushState(null, '', buildTabPath(tab));
+  }, []);
+
   const openTypesModal = useCallback((code: string) => {
     setActiveTab('types');
     setTypesDetailCode(code);
@@ -196,37 +203,33 @@ function App() {
 
   const closeTypesModal = useCallback(() => {
     setTypesDetailCode(null);
-    if (parseTypeCodeFromPath()) {
-      window.history.replaceState(null, '', buildHomePath());
-    }
+    window.history.replaceState(null, '', buildTabPath('types'));
   }, []);
 
   useEffect(() => {
     const onPop = () => {
-      const code = parseTypeCodeFromPath();
-      setTypesDetailCode(code);
-      if (code) setActiveTab('types');
+      const route = parseAppRoute();
+      if (route.mode === 'type') {
+        setActiveTab('types');
+        setTypesDetailCode(route.code);
+      } else {
+        setTypesDetailCode(null);
+        setActiveTab(route.tab);
+      }
     };
     window.addEventListener('popstate', onPop);
     return () => window.removeEventListener('popstate', onPop);
   }, []);
 
-  useEffect(() => {
-    if (activeTab === 'types') return;
-    setTypesDetailCode(null);
-    if (parseTypeCodeFromPath()) {
-      window.history.replaceState(null, '', buildHomePath());
-    }
-  }, [activeTab]);
-
   const startQuiz = () => {
     setQuizNonce((n) => n + 1);
+    setTypesDetailCode(null);
     setActiveTab('quiz');
     setScreen('quiz');
     setIndex(0);
     setAnswers({});
     setQuizResultCode(null);
-    window.history.replaceState(null, '', buildHomePath());
+    window.history.replaceState(null, '', buildTabPath('quiz'));
   };
 
   const finishQuiz = (nextAnswers: Record<string, Letter>) => {
@@ -326,19 +329,19 @@ function App() {
               <nav className="top-tabs" aria-label="Main navigation">
                 <button
                   className={`top-tab ${activeTab === 'quiz' ? 'top-tab--active' : ''}`}
-                  onClick={() => setActiveTab('quiz')}
+                  onClick={() => goToTab('quiz')}
                 >
                   Quiz
                 </button>
                 <button
                   className={`top-tab ${activeTab === 'types' ? 'top-tab--active' : ''}`}
-                  onClick={() => setActiveTab('types')}
+                  onClick={() => goToTab('types')}
                 >
                   Personality Types
                 </button>
                 <button
                   className={`top-tab ${activeTab === 'guide' ? 'top-tab--active' : ''}`}
-                  onClick={() => setActiveTab('guide')}
+                  onClick={() => goToTab('guide')}
                 >
                   Letter Key
                 </button>

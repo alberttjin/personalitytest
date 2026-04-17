@@ -108,18 +108,18 @@ export const traitMeta: Record<
 export const letterKeyPage = {
   headline: 'What the three letters mean',
   intro: [
-    'This thing is basically asking: when things get tight—deadline, weird group chat energy, feelings spiking—what do you actually reach for? Tuesday-you can be totally fine; 2am-you might be feral. That’s allowed.',
-    'At the end you get three letters. Each one is just whichever habit won most often on that slice: how you think, how feelings move through you, and what people can see. It’s a pattern label, not a report card.',
+    'The quiz asks how you tend to react when pressure shows up: how you think things through, what happens with your feelings, and how you act around people.',
+    'You get three letters at the end—one from the thinking questions, one from the feelings questions, and one from the social questions. Each letter is the option you chose most often in that group.',
   ],
   quote:
-    'There isn’t a “correct” way to be stressed. You can work on habits and still own what you default to.',
+    'These aren’t grades or diagnoses. They’re just a quick way to describe habits—useful if you recognize yourself in them.',
   axisNarrative: {
     cognitive:
-      'First slot is how you commit when you’re squeezed: you want a beat to line things up (T), or you’d rather move and fix it midair (A). Nothing to do with being “smart”—it’s whether you trust the plan or the motion first.',
+      'First letter is think-first (T) vs action-first (A): pause and sort it out first, or move and figure it out as you go.',
     emotional:
-      'Second slot is where the feeling goes when the volume goes up: bottled (S), obvious on the outside (R), or checked out / far away (D). Whatever showed up most—not proof you do or don’t care.',
+      'Second letter is suppress (S), release (R), or detach (D): keep it inside, let it show on the outside, or go numb or distant.',
     social:
-      'Third slot is the people layer: turn it on (P), match the room (I), or go small and vanish (W). It’s what actually reads to others, not a popularity score.',
+      'Third letter is perform (P), integrate (I), or withdraw (W): step forward and take space, fit in with what’s going on around you, or hang back.',
   } satisfies Record<Axis, string>,
 };
 
