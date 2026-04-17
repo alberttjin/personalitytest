@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react';
 import {
   axisMeta,
-  buildArchetypeSummary,
   formatBeastDisplayName,
   getArchetypeBeast,
   getArchetypeRarity,
@@ -88,7 +87,6 @@ function ArchetypeDetailInner({
   code: string;
   headingId?: string;
 }) {
-  const summary = buildArchetypeSummary(code);
   const beast = getArchetypeBeast(code);
   const rarity = getArchetypeRarity(code);
   const letters = lettersFromCode(code);
@@ -118,6 +116,15 @@ function ArchetypeDetailInner({
         <span className="archetype-rarity-flavor">{rarity.flavorLine}</span>
       </div>
       <p className="type-modal-epithet">{beast.epithet}</p>
+
+      <div className="type-modal-profile">
+        <p className="type-modal-profile-heading">How this tends to show up</p>
+        {beast.holisticProfile.split(/\n\n/).map((para, i) => (
+          <p key={`${code}-profile-${i}`} className="type-modal-profile-p">
+            {para}
+          </p>
+        ))}
+      </div>
 
       <div className="archetype-letter-breakdown">
         <p className="archetype-letter-breakdown-title">What each letter means</p>
@@ -154,9 +161,6 @@ function ArchetypeDetailInner({
           })}
         </ul>
       </div>
-
-      <p className="type-modal-blurb">{summary.blurb}</p>
-      <p className="type-modal-lore">{beast.lore}</p>
     </>
   );
 }

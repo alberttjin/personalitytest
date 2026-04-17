@@ -414,36 +414,6 @@ export const questions: Question[] = [
   },
 ];
 
-const titleByCognitive: Record<'T' | 'A', string> = {
-  T: 'Strategy Mind',
-  A: 'Momentum Mind',
-};
-const titleByEmotional: Record<'S' | 'R' | 'D', string> = {
-  S: 'Ice Core',
-  R: 'Volcano Core',
-  D: 'Satellite Core',
-};
-const titleBySocial: Record<'P' | 'I' | 'W', string> = {
-  P: 'Stage Form',
-  I: 'Mirror Form',
-  W: 'Shadow Form',
-};
-
-export function buildArchetypeSummary(code: string): {
-  title: string;
-  blurb: string;
-} {
-  const [c, e, s] = code as unknown as [Letter, Letter, Letter];
-  const title =
-    `${titleByCognitive[c as 'T' | 'A']} ` +
-    `${titleByEmotional[e as 'S' | 'R' | 'D']} ` +
-    `${titleBySocial[s as 'P' | 'I' | 'W']}`;
-  const blurb =
-    `Under pressure, you ${traitMeta[c].blurb}, then ${traitMeta[e].blurb}, ` +
-    `and socially you ${traitMeta[s].blurb}.`;
-  return { title, blurb };
-}
-
 const ARCHETYPE_CODE_RE = /^[TA][SRD][PIW]$/i;
 
 export function isValidArchetypeCode(code: string): boolean {
@@ -456,6 +426,8 @@ export type ArchetypeBeast = {
   beast: string;
   epithet: string;
   lore: string;
+  /** Longer synthesis of the three axes + animal metaphor (shown on result / type modal). Paragraphs separated by `\n\n`. */
+  holisticProfile: string;
 };
 
 /** Title-case each word when the name has multiple words (e.g. Sea Eagle). */
@@ -473,108 +445,198 @@ export const archetypeBeasts: Record<string, ArchetypeBeast> = {
     beast: 'Sea eagle',
     epithet: 'Maps the thermals, then lands like it was always the plan.',
     lore: 'You rehearse the board before you move a piece. In public you stay composed and intentional—stress reads as poise, not panic.',
+    holisticProfile: `You tend to become the person who still looks like they have a plan when the room is losing it. You like a moment to line things up in your head, and you rarely let your first wave of feeling become everyone’s broadcast—what people see is often a calm, intentional version of you on purpose.
+
+That mixture can make you seem unshakable even when you’re churning underneath. The same instinct that makes you think before you act also makes you keep the messy parts private, while the part of you that can “turn on” socially is something you deploy to keep a situation workable, not to fake a whole personality.
+
+The sea eagle fits because you’re not performing for applause—you’re scanning from altitude, reading the currents, and when you move it can look like you meant to land there all along: a kind of poise that’s part strategy, part self-control, and part deliberate public signal.`,
   },
   TSI: {
     emoji: '🦎',
     beast: 'Chameleon',
     epithet: 'Studies the branch colors before picking a skin.',
     lore: 'You don’t rush identity—you read context, then match without losing your own spine. Pressure makes you observant, not loud.',
+    holisticProfile: `When pressure hits, you slow down just enough to think—and then you adapt. You’re less interested in being loudly correct than in being accurately placed: you notice norms, micro-signals, and the emotional weather, then adjust without announcing every gear shift.
+
+You often keep the sharpest part of your reaction internal. People may read you as easygoing or “going with the flow,” but underneath you’re tracking, comparing, updating. That can be a strength in negotiation, teaching, caretaking, or leadership that needs nuance.
+
+The chameleon isn’t emptiness; it’s precision. Your growth edge is remembering you’re allowed to have a stable center even while you match the branch—otherwise “fit in” can quietly become “disappear.”`,
   },
   TSW: {
     emoji: '🦉',
     beast: 'Burrowing owl',
     epithet: 'Knows every hole in the field; chooses when to be seen.',
     lore: 'You think first, feel second in the room, and socially you shrink your footprint until the landscape makes sense.',
+    holisticProfile: `You respond to stress by getting cerebral first—naming the problem, sequencing options, mentally rehearsing before you commit out loud. Feelings are real for you, but you often metabolize them privately; what you show first is often containment and care rather than a splashy emotional readout.
+
+Socially, you typically choose a smaller footprint until the landscape makes sense: fewer words, fewer claims on attention, more listening and positioning. That can look like wisdom, but it can also become isolation if you never choose a visible next step.
+
+The burrowing owl is your mirror: grounded, watchful, close to shelter, selective about when to be seen. You shine when your thoughtfulness is paired with one brave, clear move—quiet doesn’t have to mean stuck.`,
   },
   TRP: {
     emoji: '🦚',
     beast: 'Peacock',
     epithet: 'If it hurts, the room will hear it—in full color.',
     lore: 'You sequence stress into a story, feelings leak outward, and socially you still bring the show. It’s a lot; it’s also honest.',
+    holisticProfile: `You don’t just “have feelings under stress”—you organize them into something people can perceive. Your mind tries to sequence what’s happening, but the emotional volume is high, and it tends to leak outward as expression, stance, tone, or story. Socially, you still bring presence: you perform not only as drama, but as communication.
+
+That intensity can be clarifying for others (someone finally says the thing) and exhausting for you (you can’t sneeze quietly). People may experience you as vivid, uncompromising, magnetic, or a lot—sometimes all at once.
+
+The peacock fits: full color, high signal, impossible to pretend you didn’t notice. Your growth edge is building private recovery time so the display doesn’t become your only coping tool.`,
   },
   TRI: {
     emoji: '🐬',
     beast: 'Dolphin',
     epithet: 'Turns chaos into synchronized splashes.',
     lore: 'You feel big, show it, then adapt fast so the pod keeps moving. You’re the one matching energy while still being visibly alive.',
+    holisticProfile: `Under load, you stay relationally intelligent: you feel intensely, but you’re also scanning for how the group can keep moving. You might emote visibly, joke, escalate, or press—but often with an underlying motive of coordination: let’s keep this pod alive, let’s not freeze.
+
+You adapt quickly because “correct” matters less to you in the moment than workable. That makes you memorable in crises and teams: people feel met. It can also leave you merging too hard with other people’s tempo.
+
+The dolphin isn’t performing emptily—it’s converting turbulence into motion others can join. Your edge is noticing when synchronization has turned into self-erasure, and letting yourself surface your own needs with the same skill you use to read the room.`,
   },
   TRW: {
     emoji: '🦊',
     beast: 'Red fox',
     epithet: 'Dramatic exit, immaculate tracks, already three hedges away.',
     lore: 'You let it out, pivot, and vanish—quick reads, quick moves, low profile once the heat spikes.',
+    holisticProfile: `Your stress pattern is fast cognition plus hot feelings—then a social strategy that reduces your exposure. You read the situation, react out loud enough to be real, then pivot toward a smaller footprint once the temperature spikes.
+
+You’re not chaotic for fun; you’re conserving energy and risk. People may remember a flash of honesty, then wonder where you went. That can protect you—and it can also confuse people who needed you to stay in the conversation.
+
+The red fox fits: expressive when it matters, elusive when it doesn’t. Your growth edge is choosing a few relationships where “stay visible while uncomfortable” is the braver move than another clean exit.`,
   },
   TDP: {
     emoji: '🐻‍❄️',
     beast: 'Polar bear',
     epithet: 'Ice in the eyes, still takes up the whole frame.',
     lore: 'You detach to function, but socially you can’t help reading “on.” It’s controlled distance—presence without warmth.',
+    holisticProfile: `When things get intense, your mind goes cool and diagnostic first. Emotion may be present, but it often arrives as numbness, distance, or “let’s not make this bigger than it is.” Socially, you still read as on: contained, imposing, deliberate—presence even when warmth is withheld.
+
+People can experience you as powerful, intimidating, unreadable, or oddly formal under stress. You’re not performing joy; you’re performing control. That can stabilize a crisis—and it can also land as coldness if someone needed warmth first.
+
+The polar bear is presence with cold water between you and the chaos: massive silhouette, careful energy, little wasted heat. Your edge is learning to name the little bit of thaw you can offer without feeling like you’re losing your grip.`,
   },
   TDI: {
     emoji: '🐙',
     beast: 'Octopus',
     epithet: 'Goes flat, changes texture, becomes whatever the reef needs.',
     lore: 'You go numb-forward and socially you blend—smart, soft edges, hard-to-read center.',
+    holisticProfile: `You cope by going smart-and-adaptive while the emotional center goes quiet or hard to access. Thinking becomes a refuge; feeling becomes something you manage later—or sideways—while you solve, explain, or analyze.
+
+Socially, you blend: accommodating surfaces, clever humor, competence-as-camouflage. People may underestimate how much you’re carrying because you’re so capable of fitting the reef.
+
+The octopus maps perfectly: intelligent, flexible, textured, occasionally unreadable on purpose. Your edge is letting one trusted person see the soft body behind the camouflage—without needing to have it all figured out first.`,
   },
   TDW: {
     emoji: '🪼',
     beast: 'Jellyfish',
     epithet: 'Drifts through the drama like it isn’t your dimension.',
     lore: 'Stress makes you far away; socially you minimize contact. You’re not absent—you’re elsewhere.',
+    holisticProfile: `Pressure pulls you inward into thought and away from feeling in a legible way. You might look calm, blank, distant, or “fine” while your mind is running simulations elsewhere. Socially, you reduce contact—not always as rejection, but as self-protection and low bandwidth.
+
+People can misread this as indifference; you may experience it as overload. You’re not necessarily absent—you’re elsewhere, trying to find a version of reality you can tolerate.
+
+The jellyfish is drift and translucency: hard to grab, easy to misunderstand. Your edge is small, honest signals (“I’m overwhelmed, I need a minute”) before you float out of reach entirely.`,
   },
   ASP: {
     emoji: '🐺',
     beast: 'Grey wolf',
     epithet: 'Commits to the hunt before the briefing is pretty.',
     lore: 'You move, then tighten the plan on the fly. Feelings stay internal, but your social signal is still sharp and deliberate.',
+    holisticProfile: `You’re wired to move when the stakes rise—decisive momentum first, refinement second. Internally you may still be carrying a storm, but you often keep the rawest edges private. What others get is intention: posture, clarity, leadership energy, sometimes a challenge.
+
+That can make you galvanizing in a crisis: someone who starts the climb while others are still drafting the memo. It can also feel abrupt to people who needed a softer entry.
+
+The grey wolf fits: coordinated, hungry, socially legible even when feelings are folded away. Your edge is pairing speed with repair—looping back so your pack doesn’t only feel your pace, but your care.`,
   },
   ASI: {
     emoji: '🐕',
     beast: 'Street-smart dog',
     epithet: 'Runs in, reads the pack, adjusts tail speed.',
     lore: 'Action-first doesn’t mean reckless—you match the room fast while holding your own storm inside.',
+    holisticProfile: `You don’t wait for perfect conditions—you enter the situation and let the environment teach you. You read people quickly, adjust tone, pace, and role fast, while keeping your own turbulence out of the spotlight unless it helps.
+
+That makes you adaptable and socially fluent under pressure: you’re “good in rooms,” even when you’re privately anxious or annoyed. You can become the person who stabilizes others while quietly holding your stress.
+
+The street-smart dog is warmth plus situational IQ: loyalty without naivete. Your edge is noticing when you’ve become everyone’s regulator but nobody’s checking you.`,
   },
   ASW: {
     emoji: '🦔',
     beast: 'Hedgehog',
     epithet: 'Bops forward, then armor clicks shut.',
     lore: 'You lunge, contain, and socially you get small until it’s safe. Fast spikes, fast retreat.',
+    holisticProfile: `Your stress response often starts with forward motion—doing something, fixing something, pushing through—while you keep the emotional interior tight. Socially, you tend to shrink your surface area afterward: less talk, less exposure, more protection.
+
+That combination can look like bursts of capability followed by disappearances. People may experience you as helpful but hard to reach on the rebound.
+
+The hedgehog is spikes and retreat: effective in a tight spot, private in the aftermath. Your edge is communicating that withdrawal is recovery, not punishment—so closeness doesn’t have to guess.`,
   },
   ARP: {
     emoji: '🐓',
     beast: 'Rooster',
     epithet: 'The neighborhood knows before you do.',
     lore: 'You act, emote visibly, and perform anyway—stress becomes volume, stance, and a little theater.',
+    holisticProfile: `You respond to pressure with motion plus expression: you do something, and people can hear/see/feel that you’re alive to the moment. Stress doesn’t stay neat; it becomes volume, posture, blunt clarity, sometimes theater. Even your social presence can feel turned up—assertive, visible, hard to ignore.
+
+You can be the person who breaks denial, sets boundaries loudly, or drags a group into honesty. You can also tip into overwhelm if nobody helps metabolize what you’re throwing out into the air.
+
+The rooster is unmissable: dawn, stance, territory. Your edge is learning the difference between signaling danger and escalating it—so your volume remains a tool, not a trap.`,
   },
   ARI: {
     emoji: '🐦‍⬛',
     beast: 'Starling',
     epithet: 'Murmer-swerves with the flock, still moving at full speed.',
     lore: 'You don’t wait for perfect—you move, feel out loud, and flex to fit so the group doesn’t fracture.',
+    holisticProfile: `You handle stress by staying in motion with the group: acting, reacting, adjusting, mirroring—while trying to keep the collective from cracking. Your feelings show, but they’re often in service of coordination: this is uncomfortable, let’s still move together.
+
+You can become the glue in fast, emotional environments. You can also absorb the room’s tempo until you’re not sure what’s yours anymore.
+
+Starlings murmurate: fluid, synchronized, adaptive. Your edge is finding a small private line of truth (“this is what I need”) even while you fly with everyone else.`,
   },
   ARW: {
     emoji: '🐝',
     beast: 'Honeybee',
     epithet: 'Buzzes in, stings if needed, bounces before the Q&A.',
     lore: 'Burst energy, visible feelings, then withdrawal once the job’s done. You’re intense in sprints.',
+    holisticProfile: `Under pressure you spike—fast action, hot emotion, high wattage—then you pull back before anyone gets a long workshop about your inner life. You’re built for sprints: decisive bursts, visible urgency, then recovery behind a smaller social footprint.
+
+People may experience you as intense, productive, and occasionally abrupt when you go quiet afterward. It’s not necessarily rudeness; it’s energy economics.
+
+The honeybee fits: focused labor, sharp defense when threatened, back to the hive. Your edge is telling trusted people you’re decharging, not disappearing—so closeness doesn’t misread your withdrawal.`,
   },
   ADP: {
     emoji: '🦈',
     beast: 'Great white',
     epithet: 'Cold water, clean line, still owns the frame.',
     lore: 'You act fast, feel far away, and socially you still cut a silhouette. It’s not cruelty—it’s distance with teeth.',
+    holisticProfile: `You handle emergencies with momentum while emotional contact feels thinned out—like you’re operating from clean water at a distance. You act fast, sometimes bluntly, because stalling feels dangerous; feelings may not show on your face even if they exist somewhere offline.
+
+Socially you can still read as high-status or high-signal: not warm, but undeniable. People may find you commanding, intimidating, or hard to read in a tender way.
+
+The great white is not mindless aggression; it’s a clean line through chaos, with cold between you and the frenzy. Your edge is one human sentence of recognition—so distance doesn’t get mistaken for disdain.`,
   },
   ADI: {
     emoji: '🦎',
     beast: 'House gecko',
     epithet: 'Scuttles vertical, matches the wall, gone when the light hits.',
     lore: 'Momentum + numb + blend: you solve by moving, feel thin, and let the room tell you what shape to take.',
+    holisticProfile: `You cope by moving and adjusting: action first, emotional blunting second, social mirroring third. Under load you might feel “fine” in the numb sense while you scramble, accommodate, or reshuffle to reduce conflict and friction.
+
+You can become whoever the wall needs today—flexible, clever, surprisingly tough. That flexibility has a cost: it’s easy to lose track of the you behind the camouflage.
+
+The house gecko is vertical, fast, hard to pin: survival through fit. Your edge is naming one non-negotiable—even a small one—so blending doesn’t erase you.`,
   },
   ADW: {
     emoji: '🐚',
     beast: 'Hermit crab',
     epithet: 'Grabs the nearest shell and minds its business.',
     lore: 'You move fast internally, go flat emotionally, and socially you pull back—portable armor, minimal surface area.',
+    holisticProfile: `When pressure climbs, you accelerate internally—problem-solving, scenario-planning, escape-mapping—while feelings go flat or distant and your social presence shrinks to essentials. You’re not trying to punish anyone; you’re trying to reduce threat surface area.
+
+People may experience you as suddenly gone, quiet, or hard to reach. You may experience yourself as conserving the last usable parts of yourself.
+
+The hermit crab carries portable shelter: adaptive, cautious, survival-minded. Your edge is tiny, deliberate re-entry—one step out of the shell—so isolation doesn’t become your default climate.`,
   },
 };
 
@@ -585,6 +647,8 @@ export function getArchetypeBeast(code: string): ArchetypeBeast {
       beast: 'Unknown critter',
       epithet: 'Still sketching this one.',
       lore: 'No mascot copy yet for this code.',
+      holisticProfile:
+        'We don’t have a write-up for this combination yet—but your three letters still describe how you think, feel, and move around people when things get intense.',
     }
   );
 }
