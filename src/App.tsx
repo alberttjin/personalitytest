@@ -20,6 +20,26 @@ import {
   parseTypeCodeFromPath,
 } from './urlRoutes';
 
+function shuffleArray<T>(items: readonly T[]): T[] {
+  const arr = [...items];
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const t = arr[i];
+    arr[i] = arr[j]!;
+    arr[j] = t!;
+  }
+  return arr;
+}
+
+/** New question order + shuffled options each time `quizNonce` bumps (see startQuiz). */
+function buildQuizDeck(bank: Question[]): Question[] {
+  const withOpts = bank.map((q) => ({
+    ...q,
+    options: shuffleArray(q.options),
+  }));
+  return shuffleArray(withOpts);
+}
+
 type QuizScreen = 'intro' | 'quiz' | 'result';
 type Tab = 'quiz' | 'types' | 'guide';
 
@@ -31,13 +51,13 @@ const AXIS_EMOJI: Record<Axis, string> = {
 
 function getWinningLetter(axis: Axis, answers: Record<string, Letter>): Letter {
   const tally: Record<Letter, number> = {
-    P: 0,
+    T: 0,
     A: 0,
-    H: 0,
-    V: 0,
-    D: 0,
+    S: 0,
     R: 0,
-    B: 0,
+    D: 0,
+    P: 0,
+    I: 0,
     W: 0,
   };
 
@@ -94,9 +114,8 @@ function ArchetypeDetailInner({
         >
           {rarity.symbol} {rarity.label}
         </span>
-        <span className="archetype-rarity-estimate">{rarity.estimateLine}</span>
+        <span className="archetype-rarity-flavor">{rarity.flavorLine}</span>
       </div>
-      <p className="archetype-rarity-flavor">{rarity.flavorLine}</p>
       <p className="type-modal-epithet">{beast.epithet}</p>
 
       <div className="archetype-letter-breakdown">
@@ -153,9 +172,15 @@ function App() {
     () => routeInit.typeCode,
   );
   const [quizResultCode, setQuizResultCode] = useState<string | null>(null);
+  const [quizNonce, setQuizNonce] = useState(0);
 
-  const current = questions[index];
-  const progress = ((index + 1) / questions.length) * 100;
+  const quizDeck = useMemo(
+    () => buildQuizDeck(questions),
+    [quizNonce, questions],
+  );
+
+  const current = quizDeck[index];
+  const progress = ((index + 1) / quizDeck.length) * 100;
 
   const resultCode = screen === 'result' ? quizResultCode : null;
 
@@ -195,6 +220,7 @@ function App() {
   }, [activeTab]);
 
   const startQuiz = () => {
+    setQuizNonce((n) => n + 1);
     setActiveTab('quiz');
     setScreen('quiz');
     setIndex(0);
@@ -214,7 +240,7 @@ function App() {
 
   const chooseOption = (question: Question, letter: Letter) => {
     const next = { ...answers, [question.id]: letter };
-    if (index === questions.length - 1) {
+    if (index === quizDeck.length - 1) {
       finishQuiz(next);
       return;
     }
@@ -331,22 +357,21 @@ function App() {
                     <article>
                       <h3>🧠 Cognitive</h3>
                       <p className="axis-snippet">
-                        Under pressure, are you more plan-first or
+                        Under pressure, are you more think-first or
                         action-first?
                       </p>
                     </article>
                     <article>
                       <h3>⚡ Emotional</h3>
                       <p className="axis-snippet">
-                        Feelings get loud — bottle it, show it, or go quiet
+                        Feelings get loud — suppress it, show it, or go quiet
                         inside?
                       </p>
                     </article>
                     <article>
                       <h3>🎭 Social</h3>
                       <p className="axis-snippet">
-                        People pressure — do you turn on, blend in, or pull
-                        away?
+                        People pressure — perform, integrate, or pull away?
                       </p>
                     </article>
                   </div>
@@ -360,7 +385,7 @@ function App() {
                 <main className="card quiz-card">
                   <header className="quiz-head">
                     <p className="pill">
-                      Question {index + 1} / {questions.length}
+                      Question {index + 1} / {quizDeck.length}
                     </p>
                     <div className="progress-wrap">
                       <div
@@ -372,9 +397,9 @@ function App() {
 
                   <h2>{current.prompt}</h2>
                   <div className="options">
-                    {current.options.map((option) => (
+                    {current.options.map((option, oi) => (
                       <button
-                        key={`${current.id}-${option.letter}`}
+                        key={`${current.id}-o${oi}`}
                         className="btn option-btn"
                         onClick={() => chooseOption(current, option.letter)}
                       >
@@ -420,8 +445,8 @@ function App() {
                   <p className="pill">Personality Types</p>
                   <h2>All 18 Stress Archetypes</h2>
                   <p className="subtitle">
-                    Built from Cognitive (P/A), Emotional (H/V/D), and Social
-                    (R/B/W). Tap a mascot to read the full stress story—URL
+                    Built from Cognitive (T/A), Emotional (S/R/D), and Social
+                    (P/I/W). Tap a mascot to read the full stress story—URL
                     updates so you can share it.
                   </p>
                   <p className="type-rarity-legend">
@@ -446,9 +471,9 @@ function App() {
 
                   <section className="type-overview">
                     <div className="type-grid">
-                      {(['P', 'A'] as Letter[]).flatMap((c) =>
-                        (['H', 'V', 'D'] as Letter[]).flatMap((e) =>
-                          (['R', 'B', 'W'] as Letter[]).map((s) => {
+                      {(['T', 'A'] as Letter[]).flatMap((c) =>
+                        (['S', 'R', 'D'] as Letter[]).flatMap((e) =>
+                          (['P', 'I', 'W'] as Letter[]).map((s) => {
                             const code = `${c}${e}${s}`;
                             const beast = getArchetypeBeast(code);
                             const rarity = getArchetypeRarity(code);

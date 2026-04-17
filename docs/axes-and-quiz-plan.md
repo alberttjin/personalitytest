@@ -10,15 +10,15 @@ Each axis describes a default pattern **when load is high** (time pressure, conf
 
 | Axis | Domain | Question it answers |
 |------|--------|-------------------|
-| **Cognitive** | Thinking & analysis | Are you **plan-first** (map, sequence, research) or **action-first** (move, test, adjust)? |
-| **Emotional** | Feelings | Do feelings get **held in**, **leak out**, or **step back / numb**? |
-| **Social** | Outward presentation | Do you **perform**, **adapt / blend**, or **withdraw**? |
+| **Cognitive** | Thinking & analysis | Are you **think-first** (map, sequence, research) or **action-first** (move, test, adjust)? |
+| **Emotional** | Feelings | Do feelings get **suppressed / kept in**, **released / obvious on the outside**, or **detach / numb / far away**? |
+| **Social** | Outward presentation | Do you **perform**, **integrate / match the room**, or **withdraw**? |
 
 **Result format:** one **3-letter code**, always in this order:
 
 **Cognitive → Emotional → Social**
 
-Example: `P H W` = Cognitive **P** (plan-first), Emotional **H**, Social **W**.
+Example: `T S W` = Cognitive **T** (think-first), Emotional **S** (suppress), Social **W** (withdraw).
 
 ---
 
@@ -30,15 +30,15 @@ These are the words we show on the site and in results. Short labels for cards; 
 
 | ID | User-facing name | One-line gloss |
 |----|------------------|----------------|
-| `plan_first` | **Plan-First** | Map and sequence before you move |
+| `think_first` | **Think-First** | Map and sequence before you move |
 | `action_first` | **Action-First** | Move early and adjust on the fly |
 
 ### Emotional
 
 | ID | User-facing name | One-line gloss |
 |----|------------------|----------------|
-| `hold` | **Hold** | Keep it in, lid on, contained *(same idea as “suppress,” different word)* |
-| `vent` | **Vent** | It shows—face, voice, body; hard to hide *(same idea as “spill” / outward flow; not the verb “to vent” in copy)* |
+| `suppress` | **Suppress** | Keep it in, lid on, contained |
+| `release` | **Release** | It shows—face, voice, body; hard to hide |
 | `detach` | **Detach** | Goes flat, distant, or unreal; feelings feel far away |
 
 ### Social
@@ -46,16 +46,20 @@ These are the words we show on the site and in results. Short labels for cards; 
 | ID | User-facing name | One-line gloss |
 |----|------------------|----------------|
 | `perform` | **Perform** | Visible “on”; impression management kicks in |
-| `adapt` | **Adapt** | Match the room, soften edges, go flexible |
+| `integrate` | **Integrate** | Match the room, soften edges, go flexible |
 | `withdraw` | **Withdraw** | Pull back, minimize surface area, leave or go quiet |
 
-### Why not “Snap / Suppress / Spill”?
+### Notes on collisions (why the letters look like this)
 
-Those three are easy to mix up: they share **S** sounds and **Sp-** starts (**Sn-**, **Su-**, **Sp-**). People hear “which S-word am I?” even when the **letters** in a code differ.
+We want **one unique letter per trait** across the whole model, and we also want adjacent profile lines not to read like the same word twice.
 
-Canonical **user-facing** names use **different consonants** on emotional/social: **Hold · Vent · Detach**, **Perform · Adapt · Withdraw**. Cognitive is a **binary** (plan-first vs action-first) so the model stays clear.
+What changed vs the older draft:
 
-**Pour vs Perform:** Both start with **P** in speech and skim-reading. The outward-feelings trait is **Vent** instead; code letter **V** so it never sits next to **Perform** (`R`) as two **P**-words in the same profile line.
+- Cognitive “plan-first” became **think-first** with **`T`** so **`P`** can mean **Perform** on the social axis.
+- Emotional **Suppress** uses **`S`**, **Release** uses **`R`**, **Detach** uses **`D`**.
+- Social **Perform** uses **`P`**, **Integrate** uses **`I`**, **Withdraw** uses **`W`**.
+
+Together, the eight code letters are: **`T`, `A`, `S`, `R`, `D`, `P`, `I`, `W`** (no duplicates).
 
 ---
 
@@ -63,7 +67,7 @@ Canonical **user-facing** names use **different consonants** on emotional/social
 
 **Two kinds of collision we avoid:**
 
-1. **Letter codes** — No trait shares a code letter with another (e.g. we don’t use **S** for multiple traits).
+1. **Letter codes** — No trait shares a code letter with another.
 2. **Spoken / skimmed names** — No three traits that all sound like “S-words” on the same test.
 
 We use **eight unique letters** in codes (two cognitive + three emotional + three social); labels above are chosen so **first sounds** don’t cluster on the 3×3 axes.
@@ -74,46 +78,46 @@ We use **eight unique letters** in codes (two cognitive + three emotional + thre
 
 | Letter | Trait (display) |
 |--------|-----------------|
-| **P** | Plan-First |
+| **T** | Think-First |
 | **A** | Action-First |
 
 **Position 2 — Emotional**
 
 | Letter | Trait (display) |
 |--------|-----------------|
-| **H** | Hold |
-| **V** | Vent |
+| **S** | Suppress |
+| **R** | Release |
 | **D** | Detach |
 
 **Position 3 — Social**
 
 | Letter | Trait |
 |--------|--------|
-| **R** | Perform *(R = role / “on stage”)* |
-| **B** | Adapt *(temporary: B = blend)* |
+| **P** | Perform |
+| **I** | Integrate |
 | **W** | Withdraw |
 
 ### Full alphabet used
 
-`P`, `A`, `H`, `V`, `D`, `R`, `B`, `W` — eight letters, no duplicates.
+`T`, `A`, `S`, `R`, `D`, `P`, `I`, `W` — eight letters, no duplicates.
 
 ### Examples
 
 | Code | Meaning |
 |------|---------|
-| `P H W` | Plan-First · Hold · Withdraw |
-| `A V R` | Action-First · Vent · Perform |
-| `P D B` | Plan-First · Detach · Adapt |
+| `T S W` | Think-First · Suppress · Withdraw |
+| `A R P` | Action-First · Release · Perform |
+| `T D I` | Think-First · Detach · Integrate |
 
 ### URL / share slug (optional)
 
-Use lowercase with separators to avoid ambiguity: `p-h-w` or `PHW`. If using query params: `?c=P&e=H&s=W` is enough.
+Use lowercase with separators to avoid ambiguity: `t-s-w` or `TSW`. If using query params: `?c=T&e=S&s=W` is enough.
 
 ---
 
 ## 4. Scoring (implementation-ready rules)
 
-- **Cognitive** questions have **two** options (plan-first vs action-first). **Emotional** and **Social** questions have **three** options each.
+- **Cognitive** questions have **two** options (think-first vs action-first). **Emotional** and **Social** questions have **three** options each.
 - Each option awards **+1** to **one** trait on **one** axis (never two axes at once for a single answer).
 - **Per axis:** sum points for that axis’s traits; winning trait = **max** (ties: see below).
 - **Final type:** concatenate the three winning letters in order **C → E → S**.
@@ -131,7 +135,7 @@ Use lowercase with separators to avoid ambiguity: `p-h-w` or `PHW`. If using que
 | Emotional | 6 | 8–10 |
 | Social | 6 | 8–10 |
 
-**Total:** ~18–30 questions. Current app: **22** (6 cognitive + 8 emotional + 8 social).
+**Total:** ~18–30 questions. Current app: **18** (6 cognitive + 6 emotional + 6 social), same as the draft bank below; the live quiz shuffles question order and option order each run.
 
 ---
 
@@ -149,9 +153,9 @@ Use lowercase with separators to avoid ambiguity: `p-h-w` or `PHW`. If using que
 
 Below: **draft stems**. **Cognitive** items have **two** options; **emotional** and **social** have **three** each. Each option maps to **one letter** (trait) on that axis. Labels in brackets are for **internal scoring only**—UI can show only the scenario text.
 
-### Cognitive axis (Plan-First `P` · Action-First `A`)
+### Cognitive axis (Think-First `T` · Action-First `A`)
 
-Same stems as the old **L / K / G** draft: **L** maps to **P** (plan-first), **K** to **A** (action-first); **G** options were dropped. The app copy lives in `src/data.ts` and should stay in sync with the tables below.
+Same stems as the old **L / K / G** draft: **L** maps to **T** (think-first), **K** to **A** (action-first); **G** options were dropped. The app copy lives in `src/data.ts` and should stay in sync with the tables below.
 
 ---
 
@@ -159,16 +163,16 @@ Same stems as the old **L / K / G** draft: **L** maps to **P** (plan-first), **K
 
 | Option | Letter |
 |--------|--------|
-| If i drink a bunch of white paint and shit from the air, can I cosplay a bird? | P |
+| If I drink a bunch of white paint and shit from the air, can I cosplay a bird? | T |
 | LET ME TAKE THIS BABY FOR A SPIN. | A |
-| This is scary, how do I do this safely? | P |
+| This is scary, how do I do this safely? | T |
 
 
 *You have two great job offers. (Don't get excited, its just a hypothetical). The acceptance deadline is in 48 hours. You have agonized over the decision for the past 5 days.*
 
 | Option | Letter |
 |--------|--------|
-| Let me go through pros and cons again, I'll think up until the last minute. | P |
+| Let me go through pros and cons again, I'll think up until the last minute. | T |
 | I've done enough research, I'm just gonna pick one. | A |
 | I'm flipping a coin ... | A |
 
@@ -176,7 +180,7 @@ Same stems as the old **L / K / G** draft: **L** maps to **P** (plan-first), **K
 
 | Option | Letter |
 |--------|--------|
-| Let think about it for 20 some minutes, and perhaps phone a friend. | P |
+| Let think about it for 20 some minutes, and perhaps phone a friend. | T |
 | I send hi! or the first line I think of. | A |
 | Imma just send the same awesome pickup line I send everyone | A |
 
@@ -184,7 +188,7 @@ Same stems as the old **L / K / G** draft: **L** maps to **P** (plan-first), **K
 
 | Option | Letter |
 |--------|--------|
-| Let me look through the tabs, and think about if any are important. Then I'll clean up the ones I don't need. | P |
+| Let me look through the tabs, and think about if any are important. Then I'll clean up the ones I don't need. | T |
 | I'm just gonna close all tabs and start from fresh | A |
 | This is overwhelming time to visit my favorite incognito site | A |
 
@@ -192,7 +196,7 @@ Same stems as the old **L / K / G** draft: **L** maps to **P** (plan-first), **K
 
 | Option | Letter |
 |--------|--------|
-| Hmm, this purchase is rather large, lemme think about it for a couple of months.| P |
+| Hmm, this purchase is rather large, lemme think about it for a couple of months. | T |
 | I need to looksmaxx NOW. PURCHASE. | A |
 | This is too expensive, i will get my ass up and go to the gym ... | A |
 
@@ -200,147 +204,112 @@ Same stems as the old **L / K / G** draft: **L** maps to **P** (plan-first), **K
 
 | Option | Letter |
 |--------|--------|
-| You can gain any skill in the world for 1 hour, but once you do, you can never gain that skill agin  | P |
+| You can gain any skill in the world for 1 hour, but once you do, you can never gain that skill agin | T |
 | You can rewind time by 5 seconds whenever you want, with a 5 second cooldown| A |
-| You can run faster than a car without breaking a sweat  | X |
-
-**Optional later:** add a third option that scores **neither** (decoys / duplicates) if you want three buttons on screen without a “fog” trait—would need a small scoring tweak in code.
+| You can run faster than a car without breaking a sweat  | A |
 
 ---
 
-### Emotional axis (Hold `H` · Vent `V` · Detach `D`)
+### Emotional axis (Suppress `S` · Release `R` · Detach `D`)
 
 *Which backstory hits you in the feels the hardest?*
 
 | Option | Letter |
 |--------|--------|
-| A young boy constantly watches as his single mother prioritizes his disabled younger brother. He must shoulder the burden of loneliness, but is unable to complain as his mother cannot handle taking care of both him and his disabled brother.  | H |
-| A 14 year old boy loses his parents due to a car crash with a drunk driver. The driver gets away and the boy spends the next few years seeking revenge. | V |
+| A young boy constantly watches as his single mother prioritizes his disabled younger brother. He must shoulder the burden of loneliness, but is unable to complain as his mother cannot handle taking care of both him and his disabled brother. | S |
+| A 14 year old boy loses his parents due to a car crash with a drunk driver. The driver gets away and the boy spends the next few years seeking revenge. | R |
 | A young girl gets ostracized by the rest of the class. They snicker and talk behind her back, speaking ill of her worn down clothing and school supplies. She dives into her schoolwork, vowing to becoming someone successful. | D |
 
-*Your crush usually responds in 30 minutes, but it'*
+*What would you prefer?*
 
 | Option | Letter |
 |--------|--------|
-| Acting normal externally while your insides start simmering | H |
-| Immediately replying “ARE YOU MAD AT ME” (caps optional) | V |
-| Going weirdly calm/blank like “interesting, I no longer exist” | D |
+| Month long explosive diahrrea | S |
+| Month long heavy constipation | R |
+| Neither, but your entire genital region goes numb for a year. | D |
 
-*Your meme flops. Like… 2 likes. One is you. What happens emotionally?*
-
-| Option | Letter |
-|--------|--------|
-| You pretend you don’t care, but it goes into a vault labeled “later” | H |
-| You make it everyone’s problem (group chat: “I’m being censored”) | V |
-| You detach and become an anthropologist observing “attention economy” | D |
-
-*You accidentally send a message to the wrong person. You watch it deliver. You watch yourself watch it deliver.*
+*You are SUPER lonely. Nobody wants to date you. Tonight, you are hanging with your good friend Carl, but as usual, he's just gonna talk about his stupid wonderful relationship. A bird also shat on your head today. Your thoughts?*
 
 | Option | Letter |
 |--------|--------|
-| Poker face, immediate damage-control plan in silence | H |
-| Panic leaks out: frantic follow-up texts / voice note / apology tour | V |
-| Instant numbness like you hit “spectator mode” | D |
+| He irritates me to no end but I'm going to suck it up and go | S |
+| I'm gonna tell him how I feel. Just cuz im a loser doesn't mean I need to listen to his crap. | R |
+| Guess what Carl, I'm suddenly sick! I'm so sorry I can't hangout today :( | D |
 
-*Someone gives you a compliment in public and you can feel your face temperature rise.*
+*You have an exciting date! (Once again relax, it's just a hypothethical). You sit at the bar waiting for them. They never show. You got ghosted. What do you do now?*
 
 | Option | Letter |
 |--------|--------|
-| You keep it contained: “haha thanks” and you move on | H |
-| You visibly react (laugh/cover face/short-circuit) | V |
+| Sit there for 40 minutes, nursing your drink, thinking about where you went wrong. | S |
+| Complain to the friendly bartender. The nerve of people these days. They don't even have the decency to reject over text??? | R |
+| Instantly leave. Forget it, there's plenty of fish in the sea. | D |
+
+*Uh oh, your partner caught you looking at other people's feet pics again! You apologized and feel very guilty, but they are still giving you the silent treatment. What do you do?*
+
+| Option | Letter |
+|--------|--------|
+| Sit at your desk, feeling guilty, occassionally glancing towards them, thinking over your actions. | S |
+| Keep profusely apologizing and begging them to talk to you again. | R |
 | You feel distant like the compliment is happening to a stranger | D |
 
-*You’re mad. Not “mildly annoyed.” Mad-mad. What do you do with it?*
+*What is your preferred form of self therapy?*
 
 | Option | Letter |
 |--------|--------|
-| Store it, stay composed, bring it up later (maybe never) | H |
-| It comes out in tone, sarcasm, volume, or immediate confrontation | V |
-| You go cold/flat and stop feeling much of anything | D |
+| Meditation | S |
+| Blab sesh with the homies | R |
+| Shopaholic baby | D |
 
-*You’re sad but there are still tasks. The capitalism continues.*
+### Social axis (Perform `P` · Integrate `I` · Withdraw `W`)
 
-| Option | Letter |
-|--------|--------|
-| You compartmentalize and function until you’re alone | H |
-| It shows: watery eyes, “I’m fine” voice, or telling someone | V |
-| You feel emotionally far away, like the sadness is behind glass | D |
-
-
-
-### Social axis (Perform `R` · Adapt `B` · Withdraw `W`)
-
-**S1 — Room full of strangers (stressful context)**  
-*You tend to…*
+*You are late for the pregame and everyone is loud and rowdy! What do you do?*
 
 | Option | Letter |
 |--------|--------|
-| Charm mode unlocked: smiles, names, one-liners, immediate main-character networking. | R |
-| Read the room first, mirror the pace, and slide into whichever vibe feels safest. | B |
-| Become a decorative plant near the snacks and answer in short sentences. | W |
+| START SCREAMING AND JUMPING WITH EVERYONE ELSE | P |
+| Start throwing back drinks and slowly blend in | I |
+| Stand around and observe, maybe talk to a few of the lone stragglers around| W |
 
-**S2 — You’re unprepared in a meeting**  
-*You…*
+*You are at karaoke! Your singing voice sounds like Charlie Puth, if Charlie Puth sucked ass at singing. What to do?*
 
 | Option | Letter |
 |--------|--------|
-| Speak first with a confident framing so you control the tone. | R |
-| Ask a calibrating question and align with whoever has the clearest direction. | B |
+| IM BELTING MY ASS OFF ANYWAYS, EVERYONE MUST HEAR ME SING | P |
+| Sing softer with everyone else, and | I |
 | Camera-off energy: keep comments minimal and pray we run out of time. | W |
 
-**S3 — Conflict—people look at you**  
-*You…*
+*You at the club/rave with your friends. They all start happily dancing, linked arms, in a circle. What do you do?*
 
 | Option | Letter |
 |--------|--------|
-| Take the mic and deliver a clean stance with courtroom confidence. | R |
-| Translate both sides and lower the temperature before anyone explodes. | B |
-| Shrink your footprint, disengage, and let the blast radius pass. | W |
+| Go under their arms and pop out in the middle. Everyone cheers. | P |
+| Put my arm awkwardly around two of my friends and join the circle. | I |
+| Pretend not to notice them and stare forward, focusing on the music. | W |
 
-**S4 — Complimented in front of others**  
-*You…*
-
-| Option | Letter |
-|--------|--------|
-| Accept with style, toss in a joke, keep the spotlight moving. | R |
-| Bounce the compliment back and match their energy so it stays comfortable. | B |
-| Blue-screen internally, mumble thanks, and change the subject immediately. | W |
-
-**S5 — You need help but pride is involved**  
-*You…*
+*Which superhero would you like to be?*
 
 | Option | Letter |
 |--------|--------|
-| Package the ask like a strategic collaboration, not a rescue. | R |
-| Ask the way this group normally asks, so it feels natural. | B |
-| Say “all good” and brute-force it alone even if it takes longer. | W |
+| Superman | P |
+| Batman | I |
+| Hawkeye | W |
 
-**S6 — Party when you’re not in the mood**  
-*You…*
-
-| Option | Letter |
-|--------|--------|
-| Flip the social switch and host your own mini orbit. | R |
-| Drift between groups, matching tone person by person. | B |
-| Find one safe corner, one safe person, and an exit timeline. | W |
-
-**S7 — Online argument**  
-*You tend to…*
+*Which generic character archetype would you be?*
 
 | Option | Letter |
 |--------|--------|
-| Drop a sharp public take with receipts and one clean closer. | R |
-| Rewrite for de-escalation, find common ground, then land it softly. | B |
-| Type three drafts, delete all of them, and close the app. | W |
+| THE MAIN FUCKING CHARACTER | P |
+| The comedic relief best friend | I |
+| Side npc character who avoids all the conflict | W |
 
-**S8 — New environment (school/job/move)**  
-*Under stress you…*
+*If you were a pokemon, which pokemon would you be?*
 
 | Option | Letter |
 |--------|--------|
-| Introduce your vibe early so people know your lane. | R |
-| Observe local norms, then adapt fast to how things are done. | B |
-| Keep your profile low until the social weather feels stable. | W |
+| Magikarp (Don't you dare pick this one) | P |
+| Magikarp (Pick this one) | I |
+| Magikarp  | W |
+
 
 ---
 
@@ -349,7 +318,7 @@ Same stems as the old **L / K / G** draft: **L** maps to **P** (plan-first), **K
 1. **Copy edit** all stems for tone (warm, non-clinical, inclusive).
 2. **Balance** option length and reading level across items.
 3. **Pilot** on 10–20 people: watch for “all middle answers” or axis leakage.
-4. **Lock** `P/A`, `H/V/D`, `R/B/W` in code as enums; personality blurbs keyed by 3-letter codes (e.g. `PHW`, `AVR`).
+4. **Lock** `T/A`, `S/R/D`, `P/I/W` in code as enums; personality blurbs keyed by 3-letter codes (e.g. `TSW`, `ARP`).
 5. **Optional:** A/B test 18 vs 24 questions for completion rate.
 
 ---
@@ -359,4 +328,5 @@ Same stems as the old **L / K / G** draft: **L** maps to **P** (plan-first), **K
 | Date | Change |
 |------|--------|
 | 2026-04-15 | Initial axis definitions, letter system, draft 24 questions |
-| 2026-04-16 | Cognitive axis reduced to **P/A** (plan-first vs action-first); **18** archetypes (2×3×3) |
+| 2026-04-16 | Cognitive axis **T/A** (think-first vs action-first); **18** archetypes (2×3×3) |
+| 2026-04-17 | Letter remap: **T/A**, **S/R/D**, **P/I/W** (Think / Suppress·Release·Detach / Perform·Integrate·Withdraw); archetype codes renamed accordingly |
