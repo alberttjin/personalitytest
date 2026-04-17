@@ -13,6 +13,7 @@
     "react-dom": "latest"
   },
   "devDependencies": {
+    "@types/node": "^22.19.17",
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "@vitejs/plugin-react": "latest",
