@@ -373,6 +373,12 @@ export function buildArchetypeSummary(code: string): {
   return { title, blurb };
 }
 
+const ARCHETYPE_CODE_RE = /^[PA][HVD][RBW]$/i;
+
+export function isValidArchetypeCode(code: string): boolean {
+  return ARCHETYPE_CODE_RE.test(code.trim());
+}
+
 /** One “mascot” animal per 3-letter archetype — vibes, not biology exams */
 export type ArchetypeBeast = {
   emoji: string;
@@ -510,4 +516,75 @@ export function getArchetypeBeast(code: string): ArchetypeBeast {
       lore: 'No mascot copy yet for this code.',
     }
   );
+}
+
+export type RarityTier = 'common' | 'rare' | 'mythic' | 'legendary';
+
+export type ArchetypeRarity = {
+  tier: RarityTier;
+  label: string;
+  symbol: string;
+  color: string;
+  estimateLine: string;
+  flavorLine: string;
+};
+
+const rarityTierMeta: Record<
+  RarityTier,
+  Omit<ArchetypeRarity, 'tier'>
+> = {
+  common: {
+    label: 'Common',
+    symbol: '◈',
+    color: '#6b7280',
+    estimateLine: 'Estimated frequency: common in the wild.',
+    flavorLine: 'You really do be like everyone else (affectionate).',
+  },
+  rare: {
+    label: 'Rare',
+    symbol: '◈',
+    color: '#3b82f6',
+    estimateLine: 'Estimated frequency: uncommon but not unicorn-level.',
+    flavorLine: 'Not everywhere, not nowhere. Interesting little gremlin.',
+  },
+  mythic: {
+    label: 'Mythic',
+    symbol: '◈',
+    color: '#8b5cf6',
+    estimateLine: 'Estimated frequency: pretty rare pull.',
+    flavorLine: 'Okay yes, you are kind of a special duck.',
+  },
+  legendary: {
+    label: 'Legendary',
+    symbol: '◈',
+    color: '#d4a017',
+    estimateLine: 'Estimated frequency: top-shelf rarity.',
+    flavorLine: 'Certified special duck. Museum-tier specimen.',
+  },
+};
+
+const rarityTierByCode: Record<string, RarityTier> = {
+  PHR: 'common',
+  PHB: 'common',
+  PHW: 'rare',
+  PVR: 'rare',
+  PVB: 'common',
+  PVW: 'rare',
+  PDR: 'mythic',
+  PDB: 'rare',
+  PDW: 'mythic',
+  AHR: 'common',
+  AHB: 'common',
+  AHW: 'rare',
+  AVR: 'rare',
+  AVB: 'common',
+  AVW: 'mythic',
+  ADR: 'legendary',
+  ADB: 'mythic',
+  ADW: 'legendary',
+};
+
+export function getArchetypeRarity(code: string): ArchetypeRarity {
+  const tier = rarityTierByCode[code] ?? 'common';
+  return { tier, ...rarityTierMeta[tier] };
 }

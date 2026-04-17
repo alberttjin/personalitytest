@@ -4,6 +4,7 @@ import {
   buildArchetypeSummary,
   formatBeastDisplayName,
   getArchetypeBeast,
+  getArchetypeRarity,
   letterKeyPage,
   questions,
   traitMeta,
@@ -68,6 +69,7 @@ function ArchetypeDetailInner({
 }) {
   const summary = buildArchetypeSummary(code);
   const beast = getArchetypeBeast(code);
+  const rarity = getArchetypeRarity(code);
   const letters = lettersFromCode(code);
   const beastLabel = formatBeastDisplayName(beast.beast);
 
@@ -85,6 +87,16 @@ function ArchetypeDetailInner({
         <span className="archetype-code-letters">{code}</span>
       </h2>
       <p className="archetype-beast-subtitle">{beastLabel}</p>
+      <div className="archetype-rarity-row">
+        <span
+          className="archetype-rarity-badge"
+          style={{ borderColor: rarity.color, color: rarity.color }}
+        >
+          {rarity.symbol} {rarity.label}
+        </span>
+        <span className="archetype-rarity-estimate">{rarity.estimateLine}</span>
+      </div>
+      <p className="archetype-rarity-flavor">{rarity.flavorLine}</p>
       <p className="type-modal-epithet">{beast.epithet}</p>
 
       <div className="archetype-letter-breakdown">
@@ -412,6 +424,25 @@ function App() {
                     (R/B/W). Tap a mascot to read the full stress story—URL
                     updates so you can share it.
                   </p>
+                  <p className="type-rarity-legend">
+                    Gem rarity:{' '}
+                    <span className="type-rarity-chip type-rarity-chip--common">
+                      ◈ Common
+                    </span>{' '}
+                    ·{' '}
+                    <span className="type-rarity-chip type-rarity-chip--rare">
+                      ◈ Rare
+                    </span>{' '}
+                    ·{' '}
+                    <span className="type-rarity-chip type-rarity-chip--mythic">
+                      ◈ Mythic
+                    </span>{' '}
+                    ·{' '}
+                    <span className="type-rarity-chip type-rarity-chip--legendary">
+                      ◈ Legendary
+                    </span>
+                    <span className="type-rarity-note"> (estimated)</span>
+                  </p>
 
                   <section className="type-overview">
                     <div className="type-grid">
@@ -420,6 +451,7 @@ function App() {
                           (['R', 'B', 'W'] as Letter[]).map((s) => {
                             const code = `${c}${e}${s}`;
                             const beast = getArchetypeBeast(code);
+                            const rarity = getArchetypeRarity(code);
                             return (
                               <button
                                 key={code}
@@ -434,7 +466,14 @@ function App() {
                                 <p className="type-card-beast">
                                   {formatBeastDisplayName(beast.beast)}
                                 </p>
-                                <p className="type-epithet">{beast.epithet}</p>
+                                <span
+                                  className="type-card-rarity"
+                                  style={{ color: rarity.color }}
+                                  title={`Estimated rarity: ${rarity.label}`}
+                                  aria-label={`Estimated rarity: ${rarity.label}`}
+                                >
+                                  {rarity.symbol} {rarity.label}
+                                </span>
                               </button>
                             );
                           }),
