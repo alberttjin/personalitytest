@@ -1,0 +1,24 @@
+# Dependencies
+node_modules
+
+# Build
+dist
+dist-ssr
+
+# Logs / cache
+*.log
+.cache
+
+# Local env
+.env
+.env.*
+
+# Editor / OS
+.DS_Store
+
+# TypeScript
+*.tsbuildinfo
+
+# Stray emits if tsc touches root config
+vite.config.js
+vite.config.d.ts

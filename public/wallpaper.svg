@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320">
+  <defs>
+    <style>
+      .c { fill: none; stroke: #5a8f78; stroke-width: 1.15; stroke-linecap: round; stroke-linejoin: round; opacity: 0.42; }
+      .dot { fill: #5a8f78; opacity: 0.35; }
+    </style>
+  </defs>
+  <!-- soft blob friends, tile-friendly -->
+  <g class="c">
+    <ellipse cx="52" cy="58" rx="22" ry="19"/>
+    <circle cx="44" cy="54" r="2.2" class="dot"/>
+    <circle cx="58" cy="54" r="2.2" class="dot"/>
+    <path d="M44 66 Q52 72 60 66"/>
+    <ellipse cx="52" cy="48" rx="6" ry="5"/>
+  </g>
+  <g class="c">
+    <ellipse cx="168" cy="72" rx="18" ry="24" transform="rotate(-8 168 72)"/>
+    <circle cx="162" cy="66" r="2" class="dot"/>
+    <circle cx="174" cy="68" r="2" class="dot"/>
+    <path d="M162 78 Q168 84 176 78"/>
+  </g>
+  <g class="c">
+    <ellipse cx="260" cy="48" rx="20" ry="17"/>
+    <circle cx="252" cy="44" r="2" class="dot"/>
+    <circle cx="266" cy="44" r="2" class="dot"/>
+    <path d="M252 54 Q260 60 268 54"/>
+    <path d="M248 36 Q252 28 258 32"/>
+    <path d="M262 36 Q266 28 272 32"/>
+  </g>
+  <g class="c">
+    <ellipse cx="96" cy="168" rx="24" ry="20"/>
+    <circle cx="86" cy="162" r="2.2" class="dot"/>
+    <circle cx="104" cy="162" r="2.2" class="dot"/>
+    <path d="M88 174 Q96 182 106 174"/>
+  </g>
+  <g class="c">
+    <ellipse cx="220" cy="188" rx="21" ry="18"/>
+    <circle cx="210" cy="182" r="2" class="dot"/>
+    <circle cx="228" cy="182" r="2" class="dot"/>
+    <path d="M212 192 Q220 200 230 192"/>
+    <ellipse cx="206" cy="176" rx="5" ry="4"/>
+    <ellipse cx="234" cy="176" rx="5" ry="4"/>
+  </g>
+  <g class="c">
+    <ellipse cx="48" cy="248" rx="19" ry="22"/>
+    <circle cx="42" cy="242" r="2" class="dot"/>
+    <circle cx="54" cy="242" r="2" class="dot"/>
+    <path d="M42 252 Q48 260 56 252"/>
+  </g>
+  <g class="c">
+    <ellipse cx="288" cy="260" rx="20" ry="17"/>
+    <circle cx="280" cy="254" r="2" class="dot"/>
+    <circle cx="294" cy="254" r="2" class="dot"/>
+    <path d="M282 264 Q288 270 296 264"/>
+  </g>
+  <g class="c">
+    <ellipse cx="152" cy="260" rx="17" ry="15"/>
+    <circle cx="146" cy="256" r="1.8" class="dot"/>
+    <circle cx="158" cy="256" r="1.8" class="dot"/>
+    <path d="M148 264 Q154 270 160 264"/>
+  </g>
+</svg>
