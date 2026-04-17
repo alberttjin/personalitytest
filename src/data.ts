@@ -310,7 +310,7 @@ export const questions: Question[] = [
         letter: 'R',
       },
       {
-        text: 'You feel distant like the compliment is happening to a stranger',
+        text: 'You walk away and go drown your sorrows in a sweet treat',
         letter: 'D',
       },
     ],

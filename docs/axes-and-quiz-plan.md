@@ -250,7 +250,7 @@ Same stems as the old **L / K / G** draft: **L** maps to **T** (think-first), **
 |--------|--------|
 | Sit at your desk, feeling guilty, occassionally glancing towards them, thinking over your actions. | S |
 | Keep profusely apologizing and begging them to talk to you again. | R |
-| You feel distant like the compliment is happening to a stranger | D |
+| You walk away and go drown your sorrows in a sweet treat | D |
 
 *What is your preferred form of self therapy?*
 
@@ -275,8 +275,8 @@ Same stems as the old **L / K / G** draft: **L** maps to **T** (think-first), **
 | Option | Letter |
 |--------|--------|
 | IM BELTING MY ASS OFF ANYWAYS, EVERYONE MUST HEAR ME SING | P |
-| Sing softer with everyone else, and | I |
-| Camera-off energy: keep comments minimal and pray we run out of time. | W |
+| Sing softer with everyone else, and attempt to keep some semblance of key | I |
+| Stay quiet, observe your friends make a fool of themselves | W |
 
 *You at the club/rave with your friends. They all start happily dancing, linked arms, in a circle. What do you do?*
 
