@@ -57,6 +57,8 @@ function lettersFromCode(code: string): Letter[] {
   return code.split('') as Letter[];
 }
 
+const DETAIL_AXIS_ORDER: Axis[] = ['cognitive', 'emotional', 'social'];
+
 function ArchetypeDetailInner({
   code,
   headingId,
@@ -66,19 +68,61 @@ function ArchetypeDetailInner({
 }) {
   const summary = buildArchetypeSummary(code);
   const beast = getArchetypeBeast(code);
+  const letters = lettersFromCode(code);
+  const beastLabel = formatBeastDisplayName(beast.beast);
+
   return (
     <>
       <div className="type-modal-hero" aria-hidden>
         <span className="type-modal-emoji">{beast.emoji}</span>
       </div>
-      <p className="type-modal-code">{code}</p>
+      <p className="archetype-code-label">Your stress type</p>
       <h2
         {...(headingId ? { id: headingId } : {})}
-        className="type-modal-beast-title"
+        className="archetype-code-display"
+        aria-label={`Stress type ${code}, ${beastLabel}`}
       >
-        {formatBeastDisplayName(beast.beast)}
+        <span className="archetype-code-letters">{code}</span>
       </h2>
+      <p className="archetype-beast-subtitle">{beastLabel}</p>
       <p className="type-modal-epithet">{beast.epithet}</p>
+
+      <div className="archetype-letter-breakdown">
+        <p className="archetype-letter-breakdown-title">What each letter means</p>
+        <ul className="archetype-letter-rows">
+          {DETAIL_AXIS_ORDER.map((axis, i) => {
+            const letter = letters[i];
+            const t = traitMeta[letter];
+            const ax = axisMeta[axis];
+            return (
+              <li
+                key={`${code}-${axis}`}
+                className="archetype-letter-card"
+                style={{ borderLeftColor: t.color }}
+              >
+                <div className="archetype-letter-card-top">
+                  <span
+                    className="archetype-letter-badge-lg"
+                    style={{ borderColor: t.color, color: t.color }}
+                  >
+                    {letter}
+                  </span>
+                  <div className="archetype-letter-card-meta">
+                    <span className="archetype-letter-axis">
+                      <span aria-hidden>{AXIS_EMOJI[axis]}</span> {ax.title}
+                    </span>
+                    <span className="archetype-letter-trait">
+                      <span aria-hidden>{t.emoji}</span> {t.name}
+                    </span>
+                  </div>
+                </div>
+                <p className="archetype-letter-explainer">{t.detail}</p>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+
       <p className="type-modal-blurb">{summary.blurb}</p>
       <p className="type-modal-lore">{beast.lore}</p>
     </>
@@ -335,22 +379,9 @@ function App() {
                   <div className="result-archetype-panel">
                     <ArchetypeDetailInner
                       code={resultCode}
-                      headingId="result-beast-title"
+                      headingId="result-archetype-heading"
                     />
                   </div>
-
-                  <section className="result-traits">
-                    <h3 className="result-traits-heading">Your three letters</h3>
-                    {lettersFromCode(resultCode).map((letter) => (
-                      <article key={letter} className="trait-block">
-                        <h4>
-                          {traitMeta[letter].emoji} {letter} —{' '}
-                          {traitMeta[letter].name}
-                        </h4>
-                        <p>{traitMeta[letter].blurb}</p>
-                      </article>
-                    ))}
-                  </section>
 
                   <div className="result-actions">
                     <button className="btn btn-primary" onClick={startQuiz}>

@@ -410,49 +410,6 @@ h2 {
   font-weight: 500;
 }
 
-.result-traits-heading {
-  font-family: 'Nunito', sans-serif;
-  font-size: 0.82rem;
-  font-weight: 800;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  color: var(--faint);
-  margin: 1.75rem 0 0.65rem;
-}
-
-.result-traits {
-  display: grid;
-  gap: 0.75rem;
-  margin-top: 0.5rem;
-  border-top: none;
-}
-
-.trait-block {
-  border: 1px solid var(--line);
-  border-radius: var(--radius-md);
-  padding: 1.1rem 1.1rem;
-  background: rgba(255, 255, 255, 0.45);
-}
-
-.trait-block h3,
-.trait-block h4 {
-  font-family: 'Nunito', sans-serif;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 0.45rem;
-}
-
-.trait-block p {
-  font-size: 1.02rem;
-  color: var(--ink);
-  line-height: 1.65;
-  letter-spacing: 0.02em;
-  font-weight: 500;
-}
-
 .result-actions {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr));
@@ -640,24 +597,127 @@ h2 {
   border: 1px solid rgba(61, 107, 92, 0.22);
 }
 
-.type-modal-code {
+.archetype-code-label {
   margin: 0;
   text-align: center;
   font-family: 'Nunito', sans-serif;
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   font-weight: 800;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   color: var(--faint);
 }
 
-.type-modal-beast-title {
+.archetype-code-display {
   margin: 0.35rem 0 0;
   text-align: center;
   font-family: 'Nunito', sans-serif;
-  font-size: 1.65rem;
+  font-weight: 900;
+  line-height: 1.05;
+}
+
+.archetype-code-letters {
+  font-size: clamp(2.35rem, 8vw, 3.15rem);
+  letter-spacing: 0.14em;
+  color: var(--ink);
+}
+
+.archetype-beast-subtitle {
+  margin: 0.5rem 0 0;
+  text-align: center;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--accent);
+  letter-spacing: 0.02em;
+}
+
+.archetype-letter-breakdown {
+  margin: 1.35rem 0 0;
+}
+
+.archetype-letter-breakdown-title {
+  margin: 0 0 0.65rem;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--faint);
+  text-align: center;
+}
+
+.archetype-letter-rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.archetype-letter-card {
+  margin: 0;
+  padding: 0.75rem 0.85rem 0.85rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--line);
+  border-left-width: 4px;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: 0 1px 6px rgba(45, 90, 72, 0.05);
+}
+
+.archetype-letter-card-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.archetype-letter-badge-lg {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.35rem;
+  height: 2.35rem;
+  padding: 0 0.35rem;
+  border-radius: var(--radius-md);
+  border: 2px solid;
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 900;
+  line-height: 1;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.archetype-letter-card-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.archetype-letter-axis {
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.archetype-letter-trait {
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.98rem;
   font-weight: 800;
   color: var(--ink);
-  line-height: 1.25;
+  line-height: 1.3;
+}
+
+.archetype-letter-explainer {
+  margin: 0.55rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.58;
+  color: var(--muted);
+  font-weight: 500;
 }
 
 .type-modal-epithet {
