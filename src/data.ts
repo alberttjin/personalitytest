@@ -42,7 +42,7 @@ export const traitMeta: Record<
     name: 'Think-First',
     blurb: 'map it out before you move',
     detail:
-      'You want another lap around the problem before you commit: tradeoffs, worst cases, maybe one more open tab. Then you go.',
+      'When faced with a complex intellectual problem, you love to overthink. You plan and plan and plan and you probably think you are so smart but sometimes you just gotta make a decision. My lawyers say I need to say something nice as well, so you may overthink but you are also careful and usually make less mistakes.',
     emoji: '🌀',
     color: '#8b5cf6',
   },
@@ -50,7 +50,7 @@ export const traitMeta: Record<
     name: 'Action-First',
     blurb: 'move now and adjust on the fly',
     detail:
-      'You’d rather hit send and steer. Motion first, tidy-up later—waiting around feels worse than being slightly wrong.',
+      'When faced with a complex intellectual problem, you hate to overthink. Probably because you are not very smart. You tend to act first, think later once the consequences already happen. On the bright side, because you are not afraid to make mistakes, you often accomplish a lot.',
     emoji: '⚡',
     color: '#22c55e',
   },
@@ -58,7 +58,7 @@ export const traitMeta: Record<
     name: 'Suppress',
     blurb: 'contain it internally',
     detail:
-      'Outside stays steady even when it’s loud inside. People might not clock how hard you’re white-knuckling it.',
+      'When faced with a complex emotional problem, you hold your feelings inside. You probably are a people pleaser and would rather not bother them with your silly issues. The irony is people don\'t really trust you becase you are emotionally distant. Read you like a book didn\'t I? On the bright side, you have strong control over your emotions and rarely \"crash out\" like the kids do these days.',
     emoji: '🧊',
     color: '#3b82f6',
   },
@@ -66,7 +66,7 @@ export const traitMeta: Record<
     name: 'Release',
     blurb: 'emotions leak outward',
     detail:
-      'It shows up in your face, tone, pace—sometimes before you’ve “decided” to let it out. Not always drama; just not a sealed box.',
+      'When faced with a complex emotional problem, you let it out. Whether venting to third parties or direct confrontation, you healthily expresss your feelings until everyone is annoyed with you. Maybe grow up a bit and learn to not be so dramatic. Unless you are an actual child then maybe get off this website.',
     emoji: '🌋',
     color: '#ef4444',
   },
@@ -74,7 +74,7 @@ export const traitMeta: Record<
     name: 'Detach',
     blurb: 'go numb / distant',
     detail:
-      'You go a little flat or far away, like you’re watching from the hallway. Still in the room, just not fully plugged in.',
+      'When faced with a complex emotional problem, you dissociate. Why deal with the problem when you can pretend it doesn\'t exist? You are so intelligent, keep doing this it\'s so healthy for you. Jk jk, there are benefits to this, sometimes delulu is the solulu.',
     emoji: '🛰️',
     color: '#14b8a6',
   },
@@ -82,7 +82,7 @@ export const traitMeta: Record<
     name: 'Perform',
     blurb: 'turn on the charisma',
     detail:
-      'When it’s showtime you reach for the sharp version: timing, a line that lands, “I’ve got this” energy—even if part of you is screaming.',
+      'In social situations, you ask yourself one question. How can I make this about me? I need attention right now or I will shit myself. Some call you the life of the party, some call you an attention whore. Either way, there is no such thing as bad press.',
     emoji: '🎭',
     color: '#f97316',
   },
@@ -90,7 +90,7 @@ export const traitMeta: Record<
     name: 'Integrate',
     blurb: 'match the room',
     detail:
-      'You read the vibe and bend a little so things stay workable. Less “fake,” more picking what fight matters in the moment.',
+      'In social situations, you read the vibe like a book and figure out what the safest way to fit in is. Nobody hates you, nobody loves you, the meatloaf version of a person. That being said, you can hangout with almost any group, any type of person, and that\'s a skill I can\'t deny.',
     emoji: '🦎',
     color: '#10b981',
   },
@@ -98,7 +98,7 @@ export const traitMeta: Record<
     name: 'Withdraw',
     blurb: 'pull back + disappear',
     detail:
-      'You get quieter, smaller, closer to the exit—whatever keeps your surface area tiny until the heat drops.',
+      'In social situations, you pull back and go quiet or avoid the situation all together. Fly on the wall, they say. Honestly you probably get bullied all the time by extroverts asking you "why are you so quiet?", so I will not bully you further. Your welcome.',
     emoji: '🕳️',
     color: '#6366f1',
   },
@@ -247,7 +247,7 @@ export const questions: Question[] = [
     axis: 'emotional',
     prompt: 'What would you prefer?',
     options: [
-      { text: 'Month long explosive diahrrea', letter: 'S' },
+      { text: 'Month long explosive diarrhea', letter: 'S' },
       { text: 'Month long heavy constipation', letter: 'R' },
       {
         text: 'Neither, but your entire genital region goes numb for a year.',
@@ -445,33 +445,21 @@ export const archetypeBeasts: Record<string, ArchetypeBeast> = {
     beast: 'Sea eagle',
     epithet: 'Maps the thermals, then lands like it was always the plan.',
     lore: 'You rehearse the board before you move a piece. In public you stay composed and intentional—stress reads as poise, not panic.',
-    holisticProfile: `You tend to become the person who still looks like they have a plan when the room is losing it. You like a moment to line things up in your head, and you rarely let your first wave of feeling become everyone’s broadcast—what people see is often a calm, intentional version of you on purpose.
-
-That mixture can make you seem unshakable even when you’re churning underneath. The same instinct that makes you think before you act also makes you keep the messy parts private, while the part of you that can “turn on” socially is something you deploy to keep a situation workable, not to fake a whole personality.
-
-The sea eagle fits because you’re not performing for applause—you’re scanning from altitude, reading the currents, and when you move it can look like you meant to land there all along: a kind of poise that’s part strategy, part self-control, and part deliberate public signal.`,
+    holisticProfile: `Man you're weird. At home, you can be a bit of a nervous wreck. Always thinking, always feeling, always overanalyzing. But somehow in social situations, it all falls away. You dance like nobody is watching. Except everybody is watching and you love it. Not sure what flips in the brain, but you are quite the unique lil specimen.`,
   },
   TSI: {
     emoji: '🦎',
     beast: 'Chameleon',
     epithet: 'Studies the branch colors before picking a skin.',
     lore: 'You don’t rush identity—you read context, then match without losing your own spine. Pressure makes you observant, not loud.',
-    holisticProfile: `When pressure hits, you slow down just enough to think—and then you adapt. You’re less interested in being loudly correct than in being accurately placed: you notice norms, micro-signals, and the emotional weather, then adjust without announcing every gear shift.
-
-You often keep the sharpest part of your reaction internal. People may read you as easygoing or “going with the flow,” but underneath you’re tracking, comparing, updating. That can be a strength in negotiation, teaching, caretaking, or leadership that needs nuance.
-
-The chameleon isn’t emptiness; it’s precision. Your growth edge is remembering you’re allowed to have a stable center even while you match the branch—otherwise “fit in” can quietly become “disappear.”`,
+    holisticProfile: `Do I even need to explain? You resemble the chameleon through and through. You love to blend in, carefully analyzing most situations. You don't have many friends, but are generally palatable. Maybe its time to standout. Wear a cape to your next party.”`,
   },
   TSW: {
     emoji: '🦉',
     beast: 'Burrowing owl',
     epithet: 'Knows every hole in the field; chooses when to be seen.',
     lore: 'You think first, feel second in the room, and socially you shrink your footprint until the landscape makes sense.',
-    holisticProfile: `You respond to stress by getting cerebral first—naming the problem, sequencing options, mentally rehearsing before you commit out loud. Feelings are real for you, but you often metabolize them privately; what you show first is often containment and care rather than a splashy emotional readout.
-
-Socially, you typically choose a smaller footprint until the landscape makes sense: fewer words, fewer claims on attention, more listening and positioning. That can look like wisdom, but it can also become isolation if you never choose a visible next step.
-
-The burrowing owl is your mirror: grounded, watchful, close to shelter, selective about when to be seen. You shine when your thoughtfulness is paired with one brave, clear move—quiet doesn’t have to mean stuck.`,
+    holisticProfile: `The CLASSIC. Large social situations make you anxious, but you have a few close friends you trust with your LIFE. You vent to them constantly, and your fears are valid they are getting sick of you. Just kidding! But maybe branch out a bit :)`,
   },
   TRP: {
     emoji: '🦚',
@@ -544,44 +532,28 @@ The jellyfish is drift and translucency: hard to grab, easy to misunderstand. Yo
     beast: 'Grey wolf',
     epithet: 'Commits to the hunt before the briefing is pretty.',
     lore: 'You move, then tighten the plan on the fly. Feelings stay internal, but your social signal is still sharp and deliberate.',
-    holisticProfile: `You’re wired to move when the stakes rise—decisive momentum first, refinement second. Internally you may still be carrying a storm, but you often keep the rawest edges private. What others get is intention: posture, clarity, leadership energy, sometimes a challenge.
-
-That can make you galvanizing in a crisis: someone who starts the climb while others are still drafting the memo. It can also feel abrupt to people who needed a softer entry.
-
-The grey wolf fits: coordinated, hungry, socially legible even when feelings are folded away. Your edge is pairing speed with repair—looping back so your pack doesn’t only feel your pace, but your care.`,
+    holisticProfile: `Ah, anime main character syndrome. You appear energetic, charismatic and extroverted. People call you the group leader as you employ your quick decision making skills all the way being the entertainment for the whole group. But they don’t know you. They don’t know what you deal with. Life is hard, but you don’t let people see it. My advice for you, you aren’t as cool as u think, it’s okay to drop the act some times. `,
   },
   ASI: {
     emoji: '🐕',
     beast: 'Street-smart dog',
     epithet: 'Runs in, reads the pack, adjusts tail speed.',
     lore: 'Action-first doesn’t mean reckless—you match the room fast while holding your own storm inside.',
-    holisticProfile: `You don’t wait for perfect conditions—you enter the situation and let the environment teach you. You read people quickly, adjust tone, pace, and role fast, while keeping your own turbulence out of the spotlight unless it helps.
-
-That makes you adaptable and socially fluent under pressure: you’re “good in rooms,” even when you’re privately anxious or annoyed. You can become the person who stabilizes others while quietly holding your stress.
-
-The street-smart dog is warmth plus situational IQ: loyalty without naivete. Your edge is noticing when you’ve become everyone’s regulator but nobody’s checking you.`,
+    holisticProfile: `You are independent. You don’t like to bother others and you don’t like it when they bother you. You want to get through life and social situations with as little drama as possible. You want to get done what needs to be done. You have friends and appear put together, but kind of boring. My advice for you, be a lil messy you can afford it 🙂`,
   },
   ASW: {
     emoji: '🦔',
     beast: 'Hedgehog',
     epithet: 'Bops forward, then armor clicks shut.',
     lore: 'You lunge, contain, and socially you get small until it’s safe. Fast spikes, fast retreat.',
-    holisticProfile: `Your stress response often starts with forward motion—doing something, fixing something, pushing through—while you keep the emotional interior tight. Socially, you tend to shrink your surface area afterward: less talk, less exposure, more protection.
-
-That combination can look like bursts of capability followed by disappearances. People may experience you as helpful but hard to reach on the rebound.
-
-The hedgehog is spikes and retreat: effective in a tight spot, private in the aftermath. Your edge is communicating that withdrawal is recovery, not punishment—so closeness doesn’t have to guess.`,
+    holisticProfile: `Ah a lone wolf. The sigma as they say. You move in silence. You work on yourself, and don’t have any deep level friendships. You’re all about improvement. But why? What’s the end goal? To be accepted by society? Try being more authentic, maybe you are already good enough. (Does not apply to everyone, some of you suck you should work on yourselves)`,
   },
   ARP: {
     emoji: '🐓',
     beast: 'Rooster',
     epithet: 'The neighborhood knows before you do.',
     lore: 'You act, emote visibly, and perform anyway—stress becomes volume, stance, and a little theater.',
-    holisticProfile: `You respond to pressure with motion plus expression: you do something, and people can hear/see/feel that you’re alive to the moment. Stress doesn’t stay neat; it becomes volume, posture, blunt clarity, sometimes theater. Even your social presence can feel turned up—assertive, visible, hard to ignore.
-
-You can be the person who breaks denial, sets boundaries loudly, or drags a group into honesty. You can also tip into overwhelm if nobody helps metabolize what you’re throwing out into the air.
-
-The rooster is unmissable: dawn, stance, territory. Your edge is learning the difference between signaling danger and escalating it—so your volume remains a tool, not a trap.`,
+    holisticProfile: `Ah the extrovert of extroverts. You make the plans. You entertain. You regale the crowd in your messy dating stories. People love you. People hate you. You love yourself, in truly narcissistic way. You may hurt people’s feelings sometimes, but that’s okay because you’re better than them.`,
   },
   ARI: {
     emoji: '🐦‍⬛',
@@ -653,7 +625,7 @@ export function getArchetypeBeast(code: string): ArchetypeBeast {
   );
 }
 
-export type RarityTier = 'common' | 'rare' | 'mythic' | 'legendary';
+export type RarityTier = 'common' | 'rare' | 'legendary' | 'mythic';
 
 export type ArchetypeRarity = {
   tier: RarityTier;
@@ -679,16 +651,16 @@ const rarityTierMeta: Record<
     color: '#3b82f6',
     flavorLine: 'Not everywhere, not nowhere. Interesting little gremlin.',
   },
-  mythic: {
-    label: 'Mythic',
-    symbol: '◈',
-    color: '#8b5cf6',
-    flavorLine: 'Okay yes, you are kind of a special duck.',
-  },
   legendary: {
     label: 'Legendary',
     symbol: '◈',
     color: '#d4a017',
+    flavorLine: 'Okay yes, you are kind of a special duck.',
+  },
+  mythic: {
+    label: 'Mythic',
+    symbol: '◈',
+    color: '#8b5cf6',
     flavorLine: 'Certified special duck. Museum-tier specimen.',
   },
 };
@@ -696,28 +668,29 @@ const rarityTierMeta: Record<
 /**
  * Heuristic rarity (not measured yet):
  * - T + S combinations are treated as baseline/common.
- * - D (Detach) is generally less common.
- * - D + P (“detached but performative”) is treated as extreme/legendary.
+ * - D (Detach) skews toward higher tiers.
+ * - D + P (“detached but performative”) is apex-rare — mythic (fewer than legendary).
+ * - Other D combos (integrate / withdraw socially) are legendary tier.
  */
 const rarityTierByCode: Record<string, RarityTier> = {
-  TSP: 'common',
+  TSP: 'mythic',
   TSI: 'common',
   TSW: 'common',
-  TRP: 'rare',
-  TRI: 'common',
-  TRW: 'rare',
-  TDP: 'legendary',
-  TDI: 'mythic',
-  TDW: 'mythic',
-  ASP: 'rare',
-  ASI: 'common',
-  ASW: 'rare',
-  ARP: 'rare',
-  ARI: 'common',
+  TRP: 'common',
+  TRI: 'rare',
+  TRW: 'legendary',
+  TDP: 'mythic',
+  TDI: 'legendary',
+  TDW: 'rare',
+  ASP: 'common',
+  ASI: 'rare',
+  ASW: 'legendary',
+  ARP: 'common',
+  ARI: 'rare',
   ARW: 'rare',
-  ADP: 'legendary',
-  ADI: 'mythic',
-  ADW: 'mythic',
+  ADP: 'common',
+  ADI: 'common',
+  ADW: 'rare',
 };
 
 export function getArchetypeRarity(code: string): ArchetypeRarity {

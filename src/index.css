@@ -573,12 +573,12 @@ h2 {
   color: #3b82f6;
 }
 
-.type-rarity-chip--mythic {
-  color: #8b5cf6;
-}
-
 .type-rarity-chip--legendary {
   color: #d4a017;
+}
+
+.type-rarity-chip--mythic {
+  color: #8b5cf6;
 }
 
 .type-rarity-note {

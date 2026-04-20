@@ -135,15 +135,6 @@ function ArchetypeDetailInner({
       </div>
       <p className="type-modal-epithet">{beast.epithet}</p>
 
-      <div className="type-modal-profile">
-        <p className="type-modal-profile-heading">How this tends to show up</p>
-        {beast.holisticProfile.split(/\n\n/).map((para, i) => (
-          <p key={`${code}-profile-${i}`} className="type-modal-profile-p">
-            {para}
-          </p>
-        ))}
-      </div>
-
       <div className="archetype-letter-breakdown">
         <p className="archetype-letter-breakdown-title">What each letter means</p>
         <ul className="archetype-letter-rows">
@@ -178,6 +169,15 @@ function ArchetypeDetailInner({
             );
           })}
         </ul>
+      </div>
+
+      <div className="type-modal-profile">
+        <p className="type-modal-profile-heading">How this tends to show up</p>
+        {beast.holisticProfile.split(/\n\n/).map((para, i) => (
+          <p key={`${code}-profile-${i}`} className="type-modal-profile-p">
+            {para}
+          </p>
+        ))}
       </div>
     </>
   );
@@ -309,8 +309,8 @@ function App() {
     const url = buildTypeShareUrl(resultCode);
     try {
       await navigator.share({
-        title: `${beastName} (${resultCode}) · Stress Type Quest`,
-        text: `I'm a ${beastName} (${resultCode}) on Stress Type Quest.`,
+        title: `${beastName} (${resultCode}) · Personality Test`,
+        text: `I'm a ${beastName} (${resultCode}) on Personality Test.`,
         url,
       });
     } catch {
@@ -396,10 +396,11 @@ function App() {
             <section className="content-shell">
               {activeTab === 'quiz' && screen === 'intro' && (
                 <main className="card intro-card">
-                  <p className="pill">Stress Type Quest</p>
-                  <h1>Find Your 3-Letter Stress Archetype.</h1>
+                  <p className="pill">Personality Test</p>
+                  <h1>The Best Ultimate Number One Personality Test of All Time</h1>
                   <p className="subtitle">
-                    How do you react under different types of pressure?
+                    A quiz created by a really smart guy and a team of Harvard
+                    trained scientists except one of those is a lie.
                   </p>
                   <div className="axis-grid">
                     <article>
@@ -545,12 +546,12 @@ function App() {
                       ◈ Rare
                     </span>{' '}
                     ·{' '}
-                    <span className="type-rarity-chip type-rarity-chip--mythic">
-                      ◈ Mythic
-                    </span>{' '}
-                    ·{' '}
                     <span className="type-rarity-chip type-rarity-chip--legendary">
                       ◈ Legendary
+                    </span>{' '}
+                    ·{' '}
+                    <span className="type-rarity-chip type-rarity-chip--mythic">
+                      ◈ Mythic
                     </span>
                     <span className="type-rarity-note"> (estimated)</span>
                   </p>
