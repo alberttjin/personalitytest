@@ -360,7 +360,7 @@ export const questions: Question[] = [
   {
     id: 's2',
     axis: 'social',
-    weight: 1,
+    weight: 0.5,
     prompt:
       'You are at karaoke! Your singing voice sounds like Charlie Puth, if Charlie Puth sucked ass at singing. What to do?',
     options: [
@@ -381,7 +381,7 @@ export const questions: Question[] = [
   {
     id: 's3',
     axis: 'social',
-    weight: 0.85,
+    weight: 1,
     prompt:
       'You\'re at the club/rave with your friends. They all start happily dancing, linked arms, in a circle. What do you do?',
     options: [
@@ -413,7 +413,7 @@ export const questions: Question[] = [
   {
     id: 's5',
     axis: 'social',
-    weight: 1,
+    weight: 0.75,
     prompt: 'Which generic character archetype would you be?',
     options: [
       { text: 'THE MAIN FUCKING CHARACTER', letter: 'P' },
