@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-labelledby="og-title">
+  <title id="og-title">The Slightly Rude Personality Test</title>
+  <defs>
+    <linearGradient id="og-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3d6b5c"/>
+      <stop offset="100%" stop-color="#1a3329"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#og-bg)" rx="32"/>
+  <path d="M80 420c80-60 180-80 280-40s200 20 300-40 220-60 340-20" fill="none" stroke="#e8f8f1" stroke-width="6" stroke-linecap="round" opacity="0.35"/>
+  <path d="M80 480c100-40 220-50 340-10s240 30 360-30 220-50 340-10" fill="none" stroke="#a8d9c4" stroke-width="5" stroke-linecap="round" opacity="0.28"/>
+  <text x="600" y="240" text-anchor="middle" fill="#e8f8f1" font-family="ui-sans-serif,system-ui,sans-serif" font-size="56" font-weight="800">The Slightly Rude</text>
+  <text x="600" y="310" text-anchor="middle" fill="#c5ead8" font-family="ui-sans-serif,system-ui,sans-serif" font-size="56" font-weight="700">Personality Test</text>
+  <text x="600" y="400" text-anchor="middle" fill="#a8d9c4" font-family="ui-sans-serif,system-ui,sans-serif" font-size="28" font-weight="500">Three axes · 18 archetypes · mildly rude on purpose</text>
+  <text x="600" y="520" text-anchor="middle" fill="#8fb8a8" font-family="ui-sans-serif,system-ui,sans-serif" font-size="22">Take the quiz · share your stress animal</text>
+</svg>
