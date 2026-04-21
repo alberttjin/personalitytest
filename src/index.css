@@ -604,15 +604,15 @@ h2 {
   color: #6b7280;
 }
 
-.type-rarity-chip--rare {
+.type-rarity-chip--uncommon {
   color: #3b82f6;
 }
 
-.type-rarity-chip--legendary {
+.type-rarity-chip--rare {
   color: #d4a017;
 }
 
-.type-rarity-chip--mythic {
+.type-rarity-chip--anomaly {
   color: #8b5cf6;
 }
 

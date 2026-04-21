@@ -47,7 +47,7 @@ export const traitMeta: Record<
     name: 'Think-First',
     blurb: 'map it out before you move',
     detail:
-      'When faced with a complex intellectual problem, you love to overthink. You plan and plan and plan and you probably think you are so smart but sometimes you just gotta make a decision. My lawyers say I need to say something nice as well, so you may overthink but you are also careful and usually make less mistakes.',
+      'When faced with a complex intellectual problem, you love to overthink. You plan and plan and plan and you probably think you are so smart but sometimes you just gotta make a decision. My lawyers say I need to say something nice as well, so you may overthink but you are also careful and usually make fewer mistakes.',
     emoji: '🌀',
     color: '#8b5cf6',
   },
@@ -63,7 +63,7 @@ export const traitMeta: Record<
     name: 'Suppress',
     blurb: 'contain it internally',
     detail:
-      'When faced with a complex emotional problem, you hold your feelings inside. You probably are a people pleaser and would rather not bother them with your silly issues. The irony is people don\'t really trust you becase you are emotionally distant. Read you like a book didn\'t I? On the bright side, you have strong control over your emotions and rarely \"crash out\" like the kids do these days.',
+      'When faced with a complex emotional problem, you hold your feelings inside. You probably are a people pleaser and would rather not bother them with your silly issues. The irony is people don\'t really trust you because you are emotionally distant. Read you like a book didn\'t I? On the bright side, you have strong control over your emotions and rarely \"crash out\" like the kids do these days.',
     emoji: '🧊',
     color: '#3b82f6',
   },
@@ -71,7 +71,7 @@ export const traitMeta: Record<
     name: 'Release',
     blurb: 'emotions leak outward',
     detail:
-      'When faced with a complex emotional problem, you let it out. Whether venting to third parties or direct confrontation, you healthily expresss your feelings until everyone is annoyed with you. Maybe grow up a bit and learn to not be so dramatic. Unless you are an actual child then maybe get off this website.',
+      'When faced with a complex emotional problem, you let it out. Whether venting to third parties or direct confrontation, you healthily express your feelings until everyone is annoyed with you. Maybe grow up a bit and learn to not be so dramatic. Unless you are an actual child then maybe get off this website.',
     emoji: '🌋',
     color: '#ef4444',
   },
@@ -95,7 +95,7 @@ export const traitMeta: Record<
     name: 'Integrate',
     blurb: 'match the room',
     detail:
-      'In social situations, you read the vibe like a book and figure out what the safest way to fit in is. Nobody hates you, nobody loves you, the meatloaf version of a person. That being said, you can hangout with almost any group, any type of person, and that\'s a skill I can\'t deny.',
+      'In social situations, you read the vibe like a book and figure out what the safest way to fit in is. Nobody hates you, nobody loves you, the meatloaf version of a person. That being said, you can hang out with almost any group, any type of person, and that\'s a skill I can\'t deny.',
     emoji: '🦎',
     color: '#10b981',
   },
@@ -103,7 +103,7 @@ export const traitMeta: Record<
     name: 'Withdraw',
     blurb: 'pull back + disappear',
     detail:
-      'In social situations, you pull back and go quiet or avoid the situation all together. Fly on the wall, they say. Honestly you probably get bullied all the time by extroverts asking you "why are you so quiet?", so I will not bully you further. Your welcome.',
+      'In social situations, you pull back and go quiet or avoid the situation altogether. Fly on the wall, they say. Honestly you probably get bullied all the time by extroverts asking you "why are you so quiet?", so I will not bully you further. You\'re welcome.',
     emoji: '🕳️',
     color: '#6366f1',
   },
@@ -135,7 +135,7 @@ export const questions: Question[] = [
     axis: 'cognitive',
     weight: 0.35,
     prompt:
-      'You suddenly gain the power to fly, your first thought is...',
+      'You suddenly gain the power to fly. Your first thought is...',
     options: [
       {
         text: 'If I drink a bunch of white paint and shit from the air, can I cosplay a bird?',
@@ -150,7 +150,7 @@ export const questions: Question[] = [
     axis: 'cognitive',
     weight: 1,
     prompt:
-      "You have two great job offers. (Don't get excited, its just a hypothetical). The acceptance deadline is in 48 hours. You have agonized over the decision for the past 5 days.",
+      "You have two great job offers. (Don't get excited, it's just a hypothetical). The acceptance deadline is in 48 hours. You have agonized over the decision for the past 5 days.",
     options: [
       {
         text: "Let me go through pros and cons again, I'll think up until the last minute.",
@@ -168,7 +168,7 @@ export const questions: Question[] = [
       'OMG ~SQUEAL~ THEY FINALLY GAVE ME THEIR NUMBER!!! Regarding my first message...',
     options: [
       {
-        text: 'Let think about it for 20 some minutes, and perhaps phone a friend.',
+        text: 'Let\'s think about it for 20 some minutes, and perhaps phone a friend.',
         letter: 'T',
       },
       { text: 'I send hi! or the first line I think of.', letter: 'A' },
@@ -209,7 +209,7 @@ export const questions: Question[] = [
       },
       { text: 'I need to looksmaxx NOW. PURCHASE.', letter: 'A' },
       {
-        text: 'This is too expensive, i will get my ass up and go to the gym ...',
+        text: 'This is too expensive, I will get my ass up and go to the gym ...',
         letter: 'A',
       },
     ],
@@ -221,7 +221,7 @@ export const questions: Question[] = [
     prompt: 'Which superpower would you rather have?',
     options: [
       {
-        text: 'You can gain any skill in the world for 1 hour, but once you do, you can never gain that skill agin',
+        text: 'You can gain any skill in the world for 1 hour, but once you do, you can never gain that skill again',
         letter: 'T',
       },
       {
@@ -245,11 +245,11 @@ export const questions: Question[] = [
         letter: 'S',
       },
       {
-        text: 'A 14 year old boy loses his parents due to a car crash with a drunk driver. The driver gets away and the boy spends the next few years seeking revenge.',
+        text: 'A 14-year-old boy loses his parents due to a car crash with a drunk driver. The driver gets away and the boy spends the next few years seeking revenge.',
         letter: 'R',
       },
       {
-        text: 'A young girl gets ostracized by the rest of the class. They snicker and talk behind her back, speaking ill of her worn down clothing and school supplies. She dives into her schoolwork, vowing to becoming someone successful.',
+        text: 'A young girl gets ostracized by the rest of the class. They snicker and talk behind her back, speaking ill of her worn down clothing and school supplies. She dives into her schoolwork, vowing to become someone successful.',
         letter: 'D',
       },
     ],
@@ -260,8 +260,8 @@ export const questions: Question[] = [
     weight: 0.25,
     prompt: 'What would you prefer?',
     options: [
-      { text: 'Month long explosive diarrhea', letter: 'S' },
-      { text: 'Month long heavy constipation', letter: 'R' },
+      { text: 'Month-long explosive diarrhea', letter: 'S' },
+      { text: 'Month-long heavy constipation', letter: 'R' },
       {
         text: 'Neither, but your entire genital region goes numb for a year.',
         letter: 'D',
@@ -284,7 +284,7 @@ export const questions: Question[] = [
         letter: 'R',
       },
       {
-        text: "Guess what Carl, I'm suddenly sick! I'm so sorry I can't hangout today :(",
+        text: "Guess what Carl, I'm suddenly sick! I'm so sorry I can't hang out today :(",
         letter: 'D',
       },
     ],
@@ -294,7 +294,7 @@ export const questions: Question[] = [
     axis: 'emotional',
     weight: 0.8,
     prompt:
-      "You have an exciting date! (Once again relax, it's just a hypothethical). You sit at the bar waiting for them. They never show. You got ghosted. What do you do now?",
+      "You have an exciting date! (Once again, relax, it's just a hypothetical). You sit at the bar waiting for them. They never show. You got ghosted. What do you do now?",
     options: [
       {
         text: 'Sit there for 40 minutes, nursing your drink, thinking about where you went wrong.',
@@ -318,7 +318,7 @@ export const questions: Question[] = [
       "Uh oh, your partner caught you looking at other people's feet pics again! You apologized and feel very guilty, but they are still giving you the silent treatment. What do you do?",
     options: [
       {
-        text: 'Sit at your desk, feeling guilty, occassionally glancing towards them, thinking over your actions.',
+        text: 'Sit at your desk, feeling guilty, occasionally glancing towards them, thinking over your actions.',
         letter: 'S',
       },
       {
@@ -334,8 +334,8 @@ export const questions: Question[] = [
   {
     id: 'e6',
     axis: 'emotional',
-    weight: .50,
-    prompt: 'What is your preferred form of self therapy?',
+    weight: 0.5,
+    prompt: 'What is your preferred form of self-therapy?',
     options: [
       { text: 'Meditation', letter: 'S' },
       { text: 'Blab sesh with the homies', letter: 'R' },
@@ -381,9 +381,9 @@ export const questions: Question[] = [
   {
     id: 's3',
     axis: 'social',
-    weight: .85,
+    weight: 0.85,
     prompt:
-      'You at the club/rave with your friends. They all start happily dancing, linked arms, in a circle. What do you do?',
+      'You\'re at the club/rave with your friends. They all start happily dancing, linked arms, in a circle. What do you do?',
     options: [
       {
         text: 'Go under their arms and pop out in the middle. Everyone cheers.',
@@ -428,7 +428,7 @@ export const questions: Question[] = [
     id: 's6',
     axis: 'social',
     weight: 0.25,
-    prompt: 'If you were a pokemon, which pokemon would you be?',
+    prompt: 'If you were a Pokémon, which Pokémon would you be?',
     options: [
       { text: "Magikarp (Don't you dare pick this one)", letter: 'P' },
       { text: 'Magikarp (Pick this one)', letter: 'I' },
@@ -468,158 +468,126 @@ export const archetypeBeasts: Record<string, ArchetypeBeast> = {
     beast: 'Sea eagle',
     epithet: 'Maps the thermals, then lands like it was always the plan.',
     lore: 'You rehearse the board before you move a piece. In public you stay composed and intentional—stress reads as poise, not panic.',
-    holisticProfile: `Man you're weird. At home, you can be a bit of a nervous wreck. Always thinking, always feeling, always overanalyzing. But somehow in social situations, it all falls away. You dance like nobody is watching. Except everybody is watching and you love it. Not sure what flips in the brain, but you are quite the unique lil specimen.`,
+    holisticProfile: `Man you're weird. At home, you can be a bit of a nervous wreck. Always thinking, always feeling, always overanalyzing. But somehow in social situations, it all falls away. Just like a sea eagle, you love to soar high while everyone watches. But maybe you should learn to be comfortable on the ground.`,
   },
   TSI: {
     emoji: '🦎',
     beast: 'Chameleon',
     epithet: 'Studies the branch colors before picking a skin.',
     lore: 'You don’t rush identity—you read context, then match without losing your own spine. Pressure makes you observant, not loud.',
-    holisticProfile: `Do I even need to explain? You resemble the chameleon through and through. You love to blend in, carefully analyzing most situations. You don't have many friends, but are generally palatable. Maybe its time to standout. Wear a cape to your next party.”`,
+    holisticProfile: `Do I even need to explain? You resemble the chameleon through and through. You love to blend in, carefully analyzing most situations. You don't have many friends, but are generally palatable. Maybe it's time to stand out. Wear a cape to your next party.`,
   },
   TSW: {
     emoji: '🦉',
     beast: 'Burrowing owl',
     epithet: 'Knows every hole in the field; chooses when to be seen.',
     lore: 'You think first, feel second in the room, and socially you shrink your footprint until the landscape makes sense.',
-    holisticProfile: `The CLASSIC. Large social situations make you anxious, but you have a few close friends you trust with your LIFE. You vent to them constantly, and your fears are valid they are getting sick of you. Just kidding! But maybe branch out a bit :)`,
+    holisticProfile: `The CLASSIC. Large social situations make you want to jump into a hole like the burrowing owl, but you have a few close friends you trust with your LIFE. You vent to them constantly, and your fears are valid they are getting sick of you. Just kidding! But maybe branch out a bit :)`,
   },
   TRP: {
     emoji: '🦚',
     beast: 'Peacock',
     epithet: 'If it hurts, the room will hear it—in full color.',
     lore: 'You sequence stress into a story, feelings leak outward, and socially you still bring the show. It’s a lot; it’s also honest.',
-    holisticProfile: `You don’t just “have feelings under stress”—you organize them into something people can perceive. Your mind tries to sequence what’s happening, but the emotional volume is high, and it tends to leak outward as expression, stance, tone, or story. Socially, you still bring presence: you perform not only as drama, but as communication.
-
-That intensity can be clarifying for others (someone finally says the thing) and exhausting for you (you can’t sneeze quietly). People may experience you as vivid, uncompromising, magnetic, or a lot—sometimes all at once.
-
-The peacock fits: full color, high signal, impossible to pretend you didn’t notice. Your growth edge is building private recovery time so the display doesn’t become your only coping tool.`,
+    holisticProfile: `Show off. Put the feathers away. How much attention can you suck up? I suppose there is no limit. You live for the tea, and spread it like an airborne virus. The only prerequisite for you to like someone is that they like you first. You tend to have introvert friends who love to listen to your ridiculous stories. But at home, maybe stop procrastinating. You got work to do. Why are you even on this website?`,
   },
   TRI: {
     emoji: '🐬',
     beast: 'Dolphin',
     epithet: 'Turns chaos into synchronized splashes.',
     lore: 'You feel big, show it, then adapt fast so the pod keeps moving. You’re the one matching energy while still being visibly alive.',
-    holisticProfile: `Under load, you stay relationally intelligent: you feel intensely, but you’re also scanning for how the group can keep moving. You might emote visibly, joke, escalate, or press—but often with an underlying motive of coordination: let’s keep this pod alive, let’s not freeze.
-
-You adapt quickly because “correct” matters less to you in the moment than workable. That makes you memorable in crises and teams: people feel met. It can also leave you merging too hard with other people’s tempo.
-
-The dolphin isn’t performing emptily—it’s converting turbulence into motion others can join. Your edge is noticing when synchronization has turned into self-erasure, and letting yourself surface your own needs with the same skill you use to read the room.`,
+    holisticProfile: `Your chattering about your problems sounds like a click of dolphins. Yap yap yap, you love to gossip. But oddly, you are relatively competent. You do a good job at work, rarely making mistakes. But don't think I don't see you putting off important tasks. Stop procrastinating bro.`,
   },
   TRW: {
     emoji: '🦊',
     beast: 'Red fox',
     epithet: 'Dramatic exit, immaculate tracks, already three hedges away.',
     lore: 'You let it out, pivot, and vanish—quick reads, quick moves, low profile once the heat spikes.',
-    holisticProfile: `Your stress pattern is fast cognition plus hot feelings—then a social strategy that reduces your exposure. You read the situation, react out loud enough to be real, then pivot toward a smaller footprint once the temperature spikes.
-
-You’re not chaotic for fun; you’re conserving energy and risk. People may remember a flash of honesty, then wonder where you went. That can protect you—and it can also confuse people who needed you to stay in the conversation.
-
-The red fox fits: expressive when it matters, elusive when it doesn’t. Your growth edge is choosing a few relationships where “stay visible while uncomfortable” is the braver move than another clean exit.`,
+    holisticProfile: `A bit of a nervous nelly are we? Like the red fox, you are a rare sight, dashing out here and there to avoid being perceived. That said, you do have a few close friends who help guide you through life and you couldn't be more thankful for them.`,
   },
   TDP: {
     emoji: '🐻‍❄️',
     beast: 'Polar bear',
     epithet: 'Ice in the eyes, still takes up the whole frame.',
     lore: 'You detach to function, but socially you can’t help reading “on.” It’s controlled distance—presence without warmth.',
-    holisticProfile: `When things get intense, your mind goes cool and diagnostic first. Emotion may be present, but it often arrives as numbness, distance, or “let’s not make this bigger than it is.” Socially, you still read as on: contained, imposing, deliberate—presence even when warmth is withheld.
-
-People can experience you as powerful, intimidating, unreadable, or oddly formal under stress. You’re not performing joy; you’re performing control. That can stabilize a crisis—and it can also land as coldness if someone needed warmth first.
-
-The polar bear is presence with cold water between you and the chaos: massive silhouette, careful energy, little wasted heat. Your edge is learning to name the little bit of thaw you can offer without feeling like you’re losing your grip.`,
+    holisticProfile: `You shine bright, but beneath the glow there is a layer of ice: perfectly embodying the majestic polar bear. You aren't loud, but are magnetic. People are drawn to you due to your competence and overall demeanor. But careful, respect and admiration does not always mean love.`,
   },
   TDI: {
     emoji: '🐙',
     beast: 'Octopus',
     epithet: 'Goes flat, changes texture, becomes whatever the reef needs.',
     lore: 'You go numb-forward and socially you blend—smart, soft edges, hard-to-read center.',
-    holisticProfile: `You cope by going smart-and-adaptive while the emotional center goes quiet or hard to access. Thinking becomes a refuge; feeling becomes something you manage later—or sideways—while you solve, explain, or analyze.
-
-Socially, you blend: accommodating surfaces, clever humor, competence-as-camouflage. People may underestimate how much you’re carrying because you’re so capable of fitting the reef.
-
-The octopus maps perfectly: intelligent, flexible, textured, occasionally unreadable on purpose. Your edge is letting one trusted person see the soft body behind the camouflage—without needing to have it all figured out first.`,
+    holisticProfile: `You are late to the function. Told yourself you could get ready in 30 minutes. Took you 2 hours. Spent too long on TikTok. You slither in like an octopus, blending in with the crowd. But laziness aside, you are quite chill and also very intelligent. Life isn't too hard for you, but maybe it's because you choose the path of least resistance.`,
   },
   TDW: {
     emoji: '🪼',
     beast: 'Jellyfish',
     epithet: 'Drifts through the drama like it isn’t your dimension.',
     lore: 'Stress makes you far away; socially you minimize contact. You’re not absent—you’re elsewhere.',
-    holisticProfile: `Pressure pulls you inward into thought and away from feeling in a legible way. You might look calm, blank, distant, or “fine” while your mind is running simulations elsewhere. Socially, you reduce contact—not always as rejection, but as self-protection and low bandwidth.
-
-People can misread this as indifference; you may experience it as overload. You’re not necessarily absent—you’re elsewhere, trying to find a version of reality you can tolerate.
-
-The jellyfish is drift and translucency: hard to grab, easy to misunderstand. Your edge is small, honest signals (“I’m overwhelmed, I need a minute”) before you float out of reach entirely.`,
+    holisticProfile: `Ah the introvert of introverts. The problems of your life often don't involve other people, but rather your own desires and goals. Like a jellyfish, you prefer to drift through life, slowly and carefully making important decisions, while avoiding the drama of others. Sounds peaceful. But a bit sad...`,
   },
   ASP: {
-    emoji: '🐺',
-    beast: 'Grey wolf',
-    epithet: 'Commits to the hunt before the briefing is pretty.',
-    lore: 'You move, then tighten the plan on the fly. Feelings stay internal, but your social signal is still sharp and deliberate.',
-    holisticProfile: `Ah, anime main character syndrome. You appear energetic, charismatic and extroverted. People call you the group leader as you employ your quick decision making skills all the while being the entertainment for the whole group. But you have issues inside don't you? :( Don't worry maybe if you get enough attention, all those issues will just magically go away!`,
+    emoji: '🐅',
+    beast: 'Tiger',
+    epithet: 'Explodes off the line, then dares the room to keep up.',
+    lore: 'You move first, hold emotion tight, and still project authority. Under pressure you read as focused power, not panic.',
+    holisticProfile: `Ah, anime main character syndrome. You appear energetic, charismatic and extroverted like the king of the jungle. People call you the group leader as you employ your quick decision making skills all the while being the entertainment for the whole group. But you have issues inside don't you? :( Don't worry maybe if you get enough attention, all those issues will just magically go away!`,
   },
   ASI: {
-    emoji: '🐕',
-    beast: 'Street-smart dog',
-    epithet: 'Runs in, reads the pack, adjusts tail speed.',
-    lore: 'Action-first doesn’t mean reckless—you match the room fast while holding your own storm inside.',
-    holisticProfile: `You are independent. You don’t like to bother others and you don’t like it when they bother you. You want to get through life and social situations with as little drama as possible. You want to get done what needs to be done. You have friends and appear put together. BORING. Do something for the plot buddy.`,
+    emoji: '🦦',
+    beast: 'River otter',
+    epithet: 'Dives in first, then syncs with the current and the crew.',
+    lore: 'Action-first doesn’t mean reckless—you move fast, read the group, and adapt without making every moment about yourself.',
+    holisticProfile: `You are independent. You don’t like to bother others and you don’t like it when they bother you. You want to get through life and social situations with as little drama as possible, floating along the river like a cute little otter. You want to get done what needs to be done. You have friends and appear put together. BORING. Do something for the plot buddy.`,
   },
   ASW: {
-    emoji: '🦔',
-    beast: 'Hedgehog',
-    epithet: 'Bops forward, then armor clicks shut.',
-    lore: 'You lunge, contain, and socially you get small until it’s safe. Fast spikes, fast retreat.',
+    emoji: '🐺',
+    beast: 'Lone wolf',
+    epithet: 'Surges ahead, then vanishes into the tree line.',
+    lore: 'You lunge, contain, and socially shrink your profile until it feels safe again—fast spikes, fast retreat.',
     holisticProfile: `Ah a lone wolf. The sigma as they say. You move in silence. You work on yourself, and don’t have any deep level friendships. You’re all about improvement. But why? What’s the end goal? To be accepted by society? Try being more authentic, maybe you are already good enough. (Does not apply to everyone, some of you suck you should work on yourselves)`,
   },
   ARP: {
-    emoji: '🐓',
-    beast: 'Rooster',
-    epithet: 'The neighborhood knows before you do.',
-    lore: 'You act, emote visibly, and perform anyway—stress becomes volume, stance, and a little theater.',
-    holisticProfile: `Ah the extrovert of extroverts. You make the plans. You entertain. You regale the crowd in your messy dating stories. People love you. People hate you. You love yourself, in truly narcissistic way. You may hurt people’s feelings sometimes, but that’s okay because you’re better than them.`,
+    emoji: '🦁',
+    beast: 'Lion',
+    epithet: 'Kicks the door open roaring, then owns the whole scene.',
+    lore: 'You act first, feel loudly, and perform anyway. Stress becomes presence, volume, and main-character gravity.',
+    holisticProfile: `Ah the extrovert of extroverts. You make the plans. You entertain. You regale the crowd in your messy dating stories. People love you. People hate you. You love yourself, in a truly narcissistic way. You may hurt people’s feelings sometimes, but that’s okay because you’re better than them. And like the lion, your loud ass voice can be heard from miles away.`,
   },
   ARI: {
-    emoji: '🐦‍⬛',
-    beast: 'Starling',
-    epithet: 'Murmer-swerves with the flock, still moving at full speed.',
-    lore: 'You don’t wait for perfect—you move, feel out loud, and flex to fit so the group doesn’t fracture.',
-    holisticProfile: `Yeah yeah, likeable all around. You do everything right don’t you? Multiple friend groups, a serial monogamist. Always toeing the line. Knowing what to say. It’s a bit tiring isn’t it? Take off the mask buddy, you aren't that important.`,
+    emoji: '🐧',
+    beast: 'Penguin',
+    epithet: 'Waddles in fast, reads the colony, and keeps everyone synced.',
+    lore: 'You move first, feel openly, and blend smoothly with the group so things stay connected.',
+    holisticProfile: `Yeah yeah, likeable all around. You do everything right don’t you? Multiple friend groups, a serial monogamist. Always toeing the line. Knowing what to say. It’s a bit tiring isn’t it? Like the penguin, people adore you, but you tend to blend in with the crowd.`,
   },
   ARW: {
-    emoji: '🐝',
-    beast: 'Honeybee',
-    epithet: 'Buzzes in, stings if needed, bounces before the Q&A.',
-    lore: 'Burst energy, visible feelings, then withdrawal once the job’s done. You’re intense in sprints.',
-    holisticProfile: `You have two friends. But man are you guys the trio. You know everything about each other. Spontaneously, you suggest a beach trip in the summer and they instantly respond they’re down. Hope they never move away…`,
+    emoji: '🐺',
+    beast: 'Hyena',
+    epithet: 'Laughs loud with the crew, then ghosts before the afterparty debrief.',
+    lore: 'Burst energy, visible feelings, then withdrawal once the moment passes. You’re intense in social sprints.',
+    holisticProfile: `You have two friends. But man are you guys the trio. When together, your shrill laughter sounds like a cackling hyena pack. You know everything about each other. Spontaneously, you suggest a beach trip in the summer and they instantly respond they’re down. Hope they never move away…`,
   },
   ADP: {
     emoji: '🦈',
     beast: 'Great white',
     epithet: 'Cold water, clean line, still owns the frame.',
     lore: 'You act fast, feel far away, and socially you still cut a silhouette. It’s not cruelty—it’s distance with teeth.',
-    holisticProfile: `Ah, the celebrity guest. Running from party to party, you show up and they cheer. You crack some jokes and they all laugh. But do any of these people really know you? You're probably insecure about how much people really like you, and you are right to be.`,
+    holisticProfile: `Ah, the celebrity guest. Running from party to party, you show up and they cheer. You crack some jokes and they all laugh. But do any of these people really know you? You're probably insecure about how much people really like you, and you are right to be. Like the great white, you have the charisma and the presence, but somehow you feel alone.`,
   },
   ADI: {
-    emoji: '🦎',
-    beast: 'House gecko',
-    epithet: 'Scuttles vertical, matches the wall, gone when the light hits.',
-    lore: 'Momentum + numb + blend: you solve by moving, feel thin, and let the room tell you what shape to take.',
-    holisticProfile: `You cope by moving and adjusting: action first, emotional blunting second, social mirroring third. Under load you might feel “fine” in the numb sense while you scramble, accommodate, or reshuffle to reduce conflict and friction.
-
-You can become whoever the wall needs today—flexible, clever, surprisingly tough. That flexibility has a cost: it’s easy to lose track of the you behind the camouflage.
-
-The house gecko is vertical, fast, hard to pin: survival through fit. Your edge is naming one non-negotiable—even a small one—so blending doesn’t erase you.`,
+    emoji: '🦑',
+    beast: 'Cuttlefish',
+    epithet: 'Flashes new colors mid-chaos and disappears into the background.',
+    lore: 'Momentum + numb + blend: you solve by moving, mute the feelings, and match whatever pattern keeps you safe.',
+    holisticProfile: `Life ain\'t that serious. Gotta live for the hehe haha. Crashing out? Never been there. People love you because you're chill, funny and seem to have things together. You dance through life like a cuttlefish waddling through the ocean. But you haven't always been like this, have you? You were a sensitive kid. You used to get overwhelmed. So you learned to dampen the spectrum of emotions. Nothing wrong with that. But remember, if life never hurts you, are you really living? :)`,
   },
   ADW: {
     emoji: '🐚',
     beast: 'Hermit crab',
     epithet: 'Grabs the nearest shell and minds its business.',
     lore: 'You move fast internally, go flat emotionally, and socially you pull back—portable armor, minimal surface area.',
-    holisticProfile: `When pressure climbs, you accelerate internally—problem-solving, scenario-planning, escape-mapping—while feelings go flat or distant and your social presence shrinks to essentials. You’re not trying to punish anyone; you’re trying to reduce threat surface area.
-
-People may experience you as suddenly gone, quiet, or hard to reach. You may experience yourself as conserving the last usable parts of yourself.
-
-The hermit crab carries portable shelter: adaptive, cautious, survival-minded. Your edge is tiny, deliberate re-entry—one step out of the shell—so isolation doesn’t become your default climate.`,
+    holisticProfile: `When's the last time you touched grass? You love your own company. You can spend days indoors on personal projects, hobbies, and honestly that's admirable. Your mental health, unlike others, took no hit during the pandemic. But hey, maybe let's go outside! Get out of your shell, even the hermit crab needs a change of scenery. Friends are not replaceable with hobbies. :)`,
   },
 };
 
@@ -636,7 +604,7 @@ export function getArchetypeBeast(code: string): ArchetypeBeast {
   );
 }
 
-export type RarityTier = 'common' | 'rare' | 'legendary' | 'mythic';
+export type RarityTier = 'common' | 'uncommon' | 'rare' | 'anomaly';
 
 export type ArchetypeRarity = {
   tier: RarityTier;
@@ -656,20 +624,20 @@ const rarityTierMeta: Record<
     color: '#6b7280',
     flavorLine: 'You really do be like everyone else (affectionate).',
   },
-  rare: {
-    label: 'Rare',
+  uncommon: {
+    label: 'Uncommon',
     symbol: '◈',
     color: '#3b82f6',
     flavorLine: 'Not everywhere, not nowhere. Interesting little gremlin.',
   },
-  legendary: {
-    label: 'Legendary',
+  rare: {
+    label: 'Rare',
     symbol: '◈',
     color: '#d4a017',
     flavorLine: 'Okay yes, you are kind of a special duck.',
   },
-  mythic: {
-    label: 'Mythic',
+  anomaly: {
+    label: 'Anomaly',
     symbol: '◈',
     color: '#8b5cf6',
     flavorLine: 'Certified special duck. Museum-tier specimen.',
@@ -680,28 +648,28 @@ const rarityTierMeta: Record<
  * Heuristic rarity (not measured yet):
  * - T + S combinations are treated as baseline/common.
  * - D (Detach) skews toward higher tiers.
- * - D + P (“detached but performative”) is apex-rare — mythic (fewer than legendary).
- * - Other D combos (integrate / withdraw socially) are legendary tier.
+ * - D + P (“detached but performative”) is apex-rare — anomaly (fewer than rare).
+ * - Other D combos (integrate / withdraw socially) are rare tier.
  */
 const rarityTierByCode: Record<string, RarityTier> = {
-  TSP: 'mythic',
+  TSP: 'anomaly',
   TSI: 'common',
   TSW: 'common',
-  TRP: 'common',
-  TRI: 'rare',
-  TRW: 'legendary',
-  TDP: 'mythic',
-  TDI: 'legendary',
-  TDW: 'rare',
-  ASP: 'common',
-  ASI: 'rare',
-  ASW: 'legendary',
-  ARP: 'common',
-  ARI: 'rare',
-  ARW: 'rare',
+  TRP: 'rare',
+  TRI: 'common',
+  TRW: 'rare',
+  TDP: 'rare',
+  TDI: 'common',
+  TDW: 'uncommon',
+  ASP: 'anomaly',
+  ASI: 'uncommon',
+  ASW: 'rare',
+  ARP: 'rare',
+  ARI: 'uncommon',
+  ARW: 'uncommon',
   ADP: 'common',
   ADI: 'common',
-  ADW: 'rare',
+  ADW: 'uncommon',
 };
 
 export function getArchetypeRarity(code: string): ArchetypeRarity {

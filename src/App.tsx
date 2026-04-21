@@ -309,8 +309,8 @@ function App() {
     const url = buildTypeShareUrl(resultCode);
     try {
       await navigator.share({
-        title: `${beastName} (${resultCode}) · The Slightly Mean Personality Test`,
-        text: `I'm a ${beastName} (${resultCode}) on The Slightly Mean Personality Test.`,
+        title: `${beastName} (${resultCode}) · The Slightly Rude Personality Test`,
+        text: `I'm a ${beastName} (${resultCode}) on The Slightly Rude Personality Test.`,
         url,
       });
     } catch {
@@ -396,8 +396,8 @@ function App() {
             <section className="content-shell">
               {activeTab === 'quiz' && screen === 'intro' && (
                 <main className="card intro-card">
-                  <p className="pill">The Slightly Mean Personality Test</p>
-                  <h1>The Slightly Mean Personality Test</h1>
+                  <p className="pill">The Slightly Rude Personality Test</p>
+                  <h1>The Slightly Rude Personality Test</h1>
                   <p className="subtitle intro-tagline">
                     Made by a really smart guy and a team of Harvard-trained
                     scientists, except one of those is a lie.
@@ -422,14 +422,14 @@ function App() {
                     <article>
                       <h3>⚡ Emotional</h3>
                       <p className="axis-snippet">
-                        Feelings get loud — suppress it, show it, or go quiet
+                        Feelings get loud: suppress it, show it, or go quiet
                         inside?
                       </p>
                     </article>
                     <article>
                       <h3>🎭 Social</h3>
                       <p className="axis-snippet">
-                        People pressure — perform, integrate, or pull away?
+                        People pressure: perform, integrate, or pull away?
                       </p>
                     </article>
                   </div>
@@ -540,29 +540,24 @@ function App() {
                 <main className="card types-card">
                   <p className="pill">Personality Types</p>
                   <h2>All 18 Stress Archetypes</h2>
-                  <p className="subtitle">
-                    Built from Cognitive (T/A), Emotional (S/R/D), and Social
-                    (P/I/W). Tap a mascot to read the full stress story—URL
-                    updates so you can share it.
-                  </p>
                   <p className="type-rarity-legend">
-                    Gem rarity:{' '}
+                    Personality Type Rarity:{' '}
                     <span className="type-rarity-chip type-rarity-chip--common">
                       ◈ Common
+                    </span>{' '}
+                    ·{' '}
+                    <span className="type-rarity-chip type-rarity-chip--uncommon">
+                      ◈ Uncommon
                     </span>{' '}
                     ·{' '}
                     <span className="type-rarity-chip type-rarity-chip--rare">
                       ◈ Rare
                     </span>{' '}
                     ·{' '}
-                    <span className="type-rarity-chip type-rarity-chip--legendary">
-                      ◈ Legendary
-                    </span>{' '}
-                    ·{' '}
-                    <span className="type-rarity-chip type-rarity-chip--mythic">
-                      ◈ Mythic
+                    <span className="type-rarity-chip type-rarity-chip--anomaly">
+                      ◈ Anomaly
                     </span>
-                    <span className="type-rarity-note"> (estimated)</span>
+                    <span className="type-rarity-note"></span>
                   </p>
 
                   <section className="type-overview">
