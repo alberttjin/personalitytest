@@ -40,6 +40,7 @@ export function trackSpaPageView(): void {
   if (!GA_ID || !window.gtag) return;
   const path = window.location.pathname + window.location.search + window.location.hash;
   window.gtag('event', 'page_view', {
+    send_to: GA_ID,
     page_path: path,
     page_location: window.location.href,
     page_title: document.title,
@@ -50,6 +51,7 @@ export function trackSpaPageView(): void {
 export function trackQuizResult(archetypeCode: string): void {
   if (!GA_ID || !window.gtag) return;
   window.gtag('event', 'quiz_complete', {
+    send_to: GA_ID,
     archetype_code: archetypeCode,
   });
 }

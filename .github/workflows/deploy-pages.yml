@@ -26,10 +26,8 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci
-      # Optional: repo variable VITE_GA_MEASUREMENT_ID (e.g. G-XXXXXXXXXX) — Settings → Secrets and variables → Actions → Variables
+      # Measurement ID is set in src/analytics.ts (avoid Actions env overriding with a wrong G- ID).
       - run: npm run build
-        env:
-          VITE_GA_MEASUREMENT_ID: ${{ vars.VITE_GA_MEASUREMENT_ID }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
