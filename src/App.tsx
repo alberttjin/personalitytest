@@ -20,6 +20,7 @@ import {
   parseAppRoute,
   type AppTab,
 } from './urlRoutes';
+import { trackQuizResult, trackSpaPageView } from './analytics';
 
 function shuffleArray<T>(items: readonly T[]): T[] {
   const arr = [...items];
@@ -217,6 +218,10 @@ function App() {
 
   const resultCode = screen === 'result' ? quizResultCode : null;
 
+  useEffect(() => {
+    trackSpaPageView();
+  }, [activeTab, screen, typesDetailCode]);
+
   const canNativeShare =
     typeof navigator !== 'undefined' &&
     typeof navigator.share === 'function';
@@ -269,9 +274,11 @@ function App() {
     const cognitive = getWinningLetter('cognitive', nextAnswers);
     const emotional = getWinningLetter('emotional', nextAnswers);
     const social = getWinningLetter('social', nextAnswers);
-    setQuizResultCode(`${cognitive}${emotional}${social}`);
+    const code = `${cognitive}${emotional}${social}`;
+    setQuizResultCode(code);
     setAnswers(nextAnswers);
     setScreen('result');
+    trackQuizResult(code);
   };
 
   const chooseOption = (
