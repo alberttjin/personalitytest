@@ -11,6 +11,11 @@ export type Question = {
   axis: Axis;
   prompt: string;
   options: Option[];
+  /**
+   * Relative weight when picking the winning letter for this axis (sum of weighted picks).
+   * Use `1` for realistic/diagnostic prompts; lower for comedy or weak signal (e.g. `0.25`–`0.5`).
+   */
+  weight: number;
 };
 
 export const axisMeta: Record<
@@ -109,7 +114,7 @@ export const letterKeyPage = {
   headline: 'What the three letters mean',
   intro: [
     'The quiz asks how you tend to react when pressure shows up: how you think things through, what happens with your feelings, and how you act around people.',
-    'You get three letters at the end—one from the thinking questions, one from the feelings questions, and one from the social questions. Each letter is the option you chose most often in that group.',
+    'You get three letters at the end—one from the thinking questions, one from the feelings questions, and one from the social questions. Each letter wins its axis by total weighted score (serious questions count more than joke ones).',
   ],
   quote:
     'These aren’t grades or diagnoses. They’re just a quick way to describe habits—useful if you recognize yourself in them.',
@@ -128,6 +133,7 @@ export const questions: Question[] = [
   {
     id: 'c1',
     axis: 'cognitive',
+    weight: 0.35,
     prompt:
       'You suddenly gain the power to fly, your first thought is...',
     options: [
@@ -142,6 +148,7 @@ export const questions: Question[] = [
   {
     id: 'c2',
     axis: 'cognitive',
+    weight: 1,
     prompt:
       "You have two great job offers. (Don't get excited, its just a hypothetical). The acceptance deadline is in 48 hours. You have agonized over the decision for the past 5 days.",
     options: [
@@ -156,6 +163,7 @@ export const questions: Question[] = [
   {
     id: 'c3',
     axis: 'cognitive',
+    weight: 0.85,
     prompt:
       'OMG ~SQUEAL~ THEY FINALLY GAVE ME THEIR NUMBER!!! Regarding my first message...',
     options: [
@@ -173,6 +181,7 @@ export const questions: Question[] = [
   {
     id: 'c4',
     axis: 'cognitive',
+    weight: 1,
     prompt:
       'You have way too many tabs open, and your computer is lagging. Your first thought is ...',
     options: [
@@ -190,6 +199,7 @@ export const questions: Question[] = [
   {
     id: 'c5',
     axis: 'cognitive',
+    weight: 0.45,
     prompt:
       'You are a weirdo with no friends. You must looksmaxx until everybody loves you. Regarding purchasing a home gym...',
     options: [
@@ -207,6 +217,7 @@ export const questions: Question[] = [
   {
     id: 'c6',
     axis: 'cognitive',
+    weight: 0.55,
     prompt: 'Which superpower would you rather have?',
     options: [
       {
@@ -226,6 +237,7 @@ export const questions: Question[] = [
   {
     id: 'e1',
     axis: 'emotional',
+    weight: 1,
     prompt: 'Which backstory hits you in the feels the hardest?',
     options: [
       {
@@ -245,6 +257,7 @@ export const questions: Question[] = [
   {
     id: 'e2',
     axis: 'emotional',
+    weight: 0.25,
     prompt: 'What would you prefer?',
     options: [
       { text: 'Month long explosive diarrhea', letter: 'S' },
@@ -258,6 +271,7 @@ export const questions: Question[] = [
   {
     id: 'e3',
     axis: 'emotional',
+    weight: 1,
     prompt:
       "You are SUPER lonely. Nobody wants to date you. Tonight, you are hanging with your good friend Carl, but as usual, he's just gonna talk about his stupid wonderful relationship. A bird also shat on your head today. Your thoughts?",
     options: [
@@ -278,6 +292,7 @@ export const questions: Question[] = [
   {
     id: 'e4',
     axis: 'emotional',
+    weight: 0.8,
     prompt:
       "You have an exciting date! (Once again relax, it's just a hypothethical). You sit at the bar waiting for them. They never show. You got ghosted. What do you do now?",
     options: [
@@ -298,6 +313,7 @@ export const questions: Question[] = [
   {
     id: 'e5',
     axis: 'emotional',
+    weight: 0.25,
     prompt:
       "Uh oh, your partner caught you looking at other people's feet pics again! You apologized and feel very guilty, but they are still giving you the silent treatment. What do you do?",
     options: [
@@ -318,6 +334,7 @@ export const questions: Question[] = [
   {
     id: 'e6',
     axis: 'emotional',
+    weight: .50,
     prompt: 'What is your preferred form of self therapy?',
     options: [
       { text: 'Meditation', letter: 'S' },
@@ -328,6 +345,7 @@ export const questions: Question[] = [
   {
     id: 's1',
     axis: 'social',
+    weight: 0.9,
     prompt:
       'You are late for the pregame and everyone is loud and rowdy! What do you do?',
     options: [
@@ -342,6 +360,7 @@ export const questions: Question[] = [
   {
     id: 's2',
     axis: 'social',
+    weight: 1,
     prompt:
       'You are at karaoke! Your singing voice sounds like Charlie Puth, if Charlie Puth sucked ass at singing. What to do?',
     options: [
@@ -362,6 +381,7 @@ export const questions: Question[] = [
   {
     id: 's3',
     axis: 'social',
+    weight: .85,
     prompt:
       'You at the club/rave with your friends. They all start happily dancing, linked arms, in a circle. What do you do?',
     options: [
@@ -382,16 +402,18 @@ export const questions: Question[] = [
   {
     id: 's4',
     axis: 'social',
-    prompt: 'Which superhero would you like to be?',
+    weight: 0.45,
+    prompt: 'What skill would you prefer to suddenly gain?',
     options: [
-      { text: 'Superman', letter: 'P' },
-      { text: 'Batman', letter: 'I' },
-      { text: 'Hawkeye', letter: 'W' },
+      { text: 'Honey smooth beautiful singing voice', letter: 'P' },
+      { text: 'Fluent in every language', letter: 'I' },
+      { text: 'Paint anything you want perfectly', letter: 'W' },
     ],
   },
   {
     id: 's5',
     axis: 'social',
+    weight: 1,
     prompt: 'Which generic character archetype would you be?',
     options: [
       { text: 'THE MAIN FUCKING CHARACTER', letter: 'P' },
@@ -405,6 +427,7 @@ export const questions: Question[] = [
   {
     id: 's6',
     axis: 'social',
+    weight: 0.25,
     prompt: 'If you were a pokemon, which pokemon would you be?',
     options: [
       { text: "Magikarp (Don't you dare pick this one)", letter: 'P' },
@@ -532,14 +555,14 @@ The jellyfish is drift and translucency: hard to grab, easy to misunderstand. Yo
     beast: 'Grey wolf',
     epithet: 'Commits to the hunt before the briefing is pretty.',
     lore: 'You move, then tighten the plan on the fly. Feelings stay internal, but your social signal is still sharp and deliberate.',
-    holisticProfile: `Ah, anime main character syndrome. You appear energetic, charismatic and extroverted. People call you the group leader as you employ your quick decision making skills all the way being the entertainment for the whole group. But they don’t know you. They don’t know what you deal with. Life is hard, but you don’t let people see it. My advice for you, you aren’t as cool as u think, it’s okay to drop the act some times. `,
+    holisticProfile: `Ah, anime main character syndrome. You appear energetic, charismatic and extroverted. People call you the group leader as you employ your quick decision making skills all the while being the entertainment for the whole group. But you have issues inside don't you? :( Don't worry maybe if you get enough attention, all those issues will just magically go away!`,
   },
   ASI: {
     emoji: '🐕',
     beast: 'Street-smart dog',
     epithet: 'Runs in, reads the pack, adjusts tail speed.',
     lore: 'Action-first doesn’t mean reckless—you match the room fast while holding your own storm inside.',
-    holisticProfile: `You are independent. You don’t like to bother others and you don’t like it when they bother you. You want to get through life and social situations with as little drama as possible. You want to get done what needs to be done. You have friends and appear put together, but kind of boring. My advice for you, be a lil messy you can afford it 🙂`,
+    holisticProfile: `You are independent. You don’t like to bother others and you don’t like it when they bother you. You want to get through life and social situations with as little drama as possible. You want to get done what needs to be done. You have friends and appear put together. BORING. Do something for the plot buddy.`,
   },
   ASW: {
     emoji: '🦔',
@@ -560,33 +583,21 @@ The jellyfish is drift and translucency: hard to grab, easy to misunderstand. Yo
     beast: 'Starling',
     epithet: 'Murmer-swerves with the flock, still moving at full speed.',
     lore: 'You don’t wait for perfect—you move, feel out loud, and flex to fit so the group doesn’t fracture.',
-    holisticProfile: `You handle stress by staying in motion with the group: acting, reacting, adjusting, mirroring—while trying to keep the collective from cracking. Your feelings show, but they’re often in service of coordination: this is uncomfortable, let’s still move together.
-
-You can become the glue in fast, emotional environments. You can also absorb the room’s tempo until you’re not sure what’s yours anymore.
-
-Starlings murmurate: fluid, synchronized, adaptive. Your edge is finding a small private line of truth (“this is what I need”) even while you fly with everyone else.`,
+    holisticProfile: `Yeah yeah, likeable all around. You do everything right don’t you? Multiple friend groups, a serial monogamist. Always toeing the line. Knowing what to say. It’s a bit tiring isn’t it? Take off the mask buddy, you aren't that important.`,
   },
   ARW: {
     emoji: '🐝',
     beast: 'Honeybee',
     epithet: 'Buzzes in, stings if needed, bounces before the Q&A.',
     lore: 'Burst energy, visible feelings, then withdrawal once the job’s done. You’re intense in sprints.',
-    holisticProfile: `Under pressure you spike—fast action, hot emotion, high wattage—then you pull back before anyone gets a long workshop about your inner life. You’re built for sprints: decisive bursts, visible urgency, then recovery behind a smaller social footprint.
-
-People may experience you as intense, productive, and occasionally abrupt when you go quiet afterward. It’s not necessarily rudeness; it’s energy economics.
-
-The honeybee fits: focused labor, sharp defense when threatened, back to the hive. Your edge is telling trusted people you’re decharging, not disappearing—so closeness doesn’t misread your withdrawal.`,
+    holisticProfile: `You have two friends. But man are you guys the trio. You know everything about each other. Spontaneously, you suggest a beach trip in the summer and they instantly respond they’re down. Hope they never move away…`,
   },
   ADP: {
     emoji: '🦈',
     beast: 'Great white',
     epithet: 'Cold water, clean line, still owns the frame.',
     lore: 'You act fast, feel far away, and socially you still cut a silhouette. It’s not cruelty—it’s distance with teeth.',
-    holisticProfile: `You handle emergencies with momentum while emotional contact feels thinned out—like you’re operating from clean water at a distance. You act fast, sometimes bluntly, because stalling feels dangerous; feelings may not show on your face even if they exist somewhere offline.
-
-Socially you can still read as high-status or high-signal: not warm, but undeniable. People may find you commanding, intimidating, or hard to read in a tender way.
-
-The great white is not mindless aggression; it’s a clean line through chaos, with cold between you and the frenzy. Your edge is one human sentence of recognition—so distance doesn’t get mistaken for disdain.`,
+    holisticProfile: `Ah, the celebrity guest. Running from party to party, you show up and they cheer. You crack some jokes and they all laugh. But do any of these people really know you? You're probably insecure about how much people really like you, and you are right to be.`,
   },
   ADI: {
     emoji: '🦎',

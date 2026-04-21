@@ -252,6 +252,41 @@ h2 {
   font-weight: 500;
 }
 
+.intro-tagline {
+  margin-top: 0.85rem;
+}
+
+.intro-warning {
+  margin: 1.35rem 0 0;
+  padding: 1rem 1.05rem;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(180, 83, 9, 0.35);
+  background: linear-gradient(
+    165deg,
+    rgba(254, 243, 199, 0.55) 0%,
+    rgba(253, 230, 138, 0.28) 100%
+  );
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.65) inset;
+}
+
+.intro-warning-title {
+  display: block;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: 0.02em;
+  line-height: 1.35;
+}
+
+.intro-warning-body {
+  margin: 0.55rem 0 0;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--muted);
+  font-weight: 600;
+}
+
 .pill {
   width: fit-content;
   font-family: 'Nunito', sans-serif;

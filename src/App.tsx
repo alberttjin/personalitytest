@@ -69,7 +69,7 @@ function getWinningLetter(axis: Axis, answers: Record<string, QuizAnswer>): Lett
     .filter((q) => q.axis === axis)
     .forEach((q) => {
       const selected = answers[q.id]?.letter;
-      if (selected) tally[selected] += 1;
+      if (selected) tally[selected] += q.weight;
     });
 
   const candidates = axisMeta[axis].letters as Letter[];
@@ -309,8 +309,8 @@ function App() {
     const url = buildTypeShareUrl(resultCode);
     try {
       await navigator.share({
-        title: `${beastName} (${resultCode}) · Personality Test`,
-        text: `I'm a ${beastName} (${resultCode}) on Personality Test.`,
+        title: `${beastName} (${resultCode}) · The Slightly Mean Personality Test`,
+        text: `I'm a ${beastName} (${resultCode}) on The Slightly Mean Personality Test.`,
         url,
       });
     } catch {
@@ -396,12 +396,21 @@ function App() {
             <section className="content-shell">
               {activeTab === 'quiz' && screen === 'intro' && (
                 <main className="card intro-card">
-                  <p className="pill">Personality Test</p>
-                  <h1>The Best Ultimate Number One Personality Test of All Time</h1>
-                  <p className="subtitle">
-                    A quiz created by a really smart guy and a team of Harvard
-                    trained scientists except one of those is a lie.
+                  <p className="pill">The Slightly Mean Personality Test</p>
+                  <h1>The Slightly Mean Personality Test</h1>
+                  <p className="subtitle intro-tagline">
+                    Made by a really smart guy and a team of Harvard-trained
+                    scientists, except one of those is a lie.
                   </p>
+                  <aside className="intro-warning" role="note">
+                    <strong className="intro-warning-title">
+                      Don’t take this if you don’t want to get bullied.
+                    </strong>
+                    <p className="intro-warning-body">
+                      The questions and answers are mean on purpose. Close the tab,
+                      touch grass, or proceed at your own ego’s risk.
+                    </p>
+                  </aside>
                   <div className="axis-grid">
                     <article>
                       <h3>🧠 Cognitive</h3>
