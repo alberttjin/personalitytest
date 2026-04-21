@@ -1,9 +1,11 @@
 /**
- * Google Analytics 4 (gtag). Set `VITE_GA_MEASUREMENT_ID` (e.g. G-XXXXXXXXXX) at build time.
+ * Google Analytics 4 (gtag). Override with env `VITE_GA_MEASUREMENT_ID` if needed.
  * No backend required — events go to Google’s endpoints from the browser.
  */
 
-const GA_ID = import.meta.env.VITE_GA_MEASUREMENT_ID as string | undefined;
+const GA_ID =
+  (import.meta.env.VITE_GA_MEASUREMENT_ID as string | undefined) ??
+  'G-QTTDSRKD8G';
 
 declare global {
   interface Window {
