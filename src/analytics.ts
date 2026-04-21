@@ -3,8 +3,9 @@
  * No backend required — events go to Google’s endpoints from the browser.
  */
 
+/** Prefer env at build time; GitHub Actions sets empty string when var is unset — `??` would keep "" and disable GA. */
 const GA_ID =
-  (import.meta.env.VITE_GA_MEASUREMENT_ID as string | undefined) ??
+  (import.meta.env.VITE_GA_MEASUREMENT_ID as string | undefined)?.trim() ||
   'G-QTTDSRKD8G';
 
 declare global {
