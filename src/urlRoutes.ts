@@ -10,9 +10,20 @@ const TAB_SEGMENT: Record<AppTab, string> = {
   guide: 'letter-key',
 };
 
-/** Path segments before app routes, e.g. ['personalitytest'] on GitHub Pages. */
+/** Must match the GitHub repo name (project Pages URL path segment). */
+const GITHUB_PAGES_REPO_SEGMENT = 'personalitytest';
+
+/** Path segments before app routes — set by host URL, not only Vite `base`. */
 export function pathPrefixSegments(): string[] {
-  const raw = (import.meta.env.BASE_URL || '/').replace(/^\/+|\/+$/g, '');
+  const base = import.meta.env.BASE_URL || '/';
+  // Production build uses relative `base: './'` so JS/CSS resolve on custom domain *and*
+  // under https://<user>.github.io/<repo>/ — infer repo prefix from pathname when present.
+  if (base === './' || base === '.') {
+    const parts = window.location.pathname.split('/').filter(Boolean);
+    if (parts[0] === GITHUB_PAGES_REPO_SEGMENT) return [GITHUB_PAGES_REPO_SEGMENT];
+    return [];
+  }
+  const raw = base.replace(/^\/+|\/+$/g, '');
   return raw ? raw.split('/').filter(Boolean) : [];
 }
 
