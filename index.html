@@ -2,6 +2,22 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <!--
+      Production uses relative `./assets/` (works on custom domain root). Deep routes like
+      `/type/ARP` must resolve bundles from site root — without <base>, `./assets/` becomes
+      `/type/assets/` (404). Matches `GITHUB_PAGES_REPO_SEGMENT` in urlRoutes.ts.
+    -->
+    <script>
+      (function () {
+        var parts = location.pathname.split('/').filter(Boolean);
+        var basePath = '/';
+        if (parts[0] === 'personalitytest') basePath = '/' + parts[0] + '/';
+        var b = document.createElement('base');
+        b.href = location.origin + basePath;
+        var afterCharset = document.head.firstElementChild?.nextElementSibling;
+        document.head.insertBefore(b, afterCharset || null);
+      })();
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>The Slightly Rude Personality Test</title>
     <!-- Inline SVG favicon: picked up reliably (some embedded browsers ignore /favicon.svg). -->
