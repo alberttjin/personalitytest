@@ -1,4 +1,12 @@
-import { useCallback, useEffect, useMemo, useState, type ReactNode } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type ReactNode,
+} from 'react';
+import { toBlob } from 'html-to-image';
 import {
   axisMeta,
   formatBeastDisplayName,
@@ -21,6 +29,7 @@ import {
   type AppTab,
 } from './urlRoutes';
 import { trackQuizResult, trackSpaPageView } from './analytics';
+import { ShareWrappedCard } from './ShareWrappedCard';
 
 function shuffleArray<T>(items: readonly T[]): T[] {
   const arr = [...items];
@@ -88,9 +97,12 @@ const DETAIL_AXIS_ORDER: Axis[] = ['cognitive', 'emotional', 'social'];
 function ArchetypeDetailInner({
   code,
   headingId,
+  omitHeader,
 }: {
   code: string;
   headingId?: string;
+  /** When true, skip hero / code headline (e.g. result page uses ShareWrappedCard for that). */
+  omitHeader?: boolean;
 }) {
   const beast = getArchetypeBeast(code);
   const rarity = getArchetypeRarity(code);
@@ -113,31 +125,41 @@ function ArchetypeDetailInner({
 
   return (
     <>
-      <div className="type-modal-hero" aria-hidden>
-        <span className="type-modal-emoji">{beast.emoji}</span>
-      </div>
-      <p className="archetype-code-label">Your stress type</p>
-      <h2
-        {...(headingId ? { id: headingId } : {})}
-        className="archetype-code-display"
-        aria-label={`Stress type ${code}, ${beastLabel}`}
-      >
-        <span className="archetype-code-letters">{code}</span>
-      </h2>
-      <p className="archetype-beast-subtitle">{beastLabel}</p>
-      <div className="archetype-rarity-row">
-        <span
-          className="archetype-rarity-badge"
-          style={{ borderColor: rarity.color, color: rarity.color }}
-        >
-          {rarity.symbol} {rarity.label}
-        </span>
-        <span className="archetype-rarity-flavor">{rarity.flavorLine}</span>
-      </div>
-      <p className="type-modal-epithet">{beast.epithet}</p>
+      {!omitHeader ? (
+        <>
+          <div className="type-modal-hero" aria-hidden>
+            <span className="type-modal-emoji">{beast.emoji}</span>
+          </div>
+          <p className="archetype-code-label">Your stress type</p>
+          <h2
+            {...(headingId ? { id: headingId } : {})}
+            className="archetype-code-display"
+            aria-label={`Stress type ${code}, ${beastLabel}`}
+          >
+            <span className="archetype-code-letters">{code}</span>
+          </h2>
+          <p className="archetype-beast-subtitle">{beastLabel}</p>
+          <div className="archetype-rarity-row">
+            <span
+              className="archetype-rarity-badge"
+              style={{ borderColor: rarity.color, color: rarity.color }}
+            >
+              {rarity.symbol} {rarity.label}
+            </span>
+            <span className="archetype-rarity-flavor">{rarity.flavorLine}</span>
+          </div>
+          <p className="type-modal-epithet">{beast.epithet}</p>
+        </>
+      ) : null}
 
       <div className="archetype-letter-breakdown">
-        <p className="archetype-letter-breakdown-title">What each letter means</p>
+        {omitHeader ? (
+          <h3 className="archetype-letter-breakdown-title" id={headingId ?? undefined}>
+            What each letter means
+          </h3>
+        ) : (
+          <p className="archetype-letter-breakdown-title">What each letter means</p>
+        )}
         <ul className="archetype-letter-rows">
           {DETAIL_AXIS_ORDER.map((axis, i) => {
             const letter = letters[i];
@@ -197,6 +219,11 @@ function App() {
   );
   const [quizResultCode, setQuizResultCode] = useState<string | null>(null);
   const [quizNonce, setQuizNonce] = useState(0);
+  const [shareModalOpen, setShareModalOpen] = useState(false);
+  const [shareImageBlob, setShareImageBlob] = useState<Blob | null>(null);
+  const [shareBusy, setShareBusy] = useState(false);
+  const [shareNotice, setShareNotice] = useState<string | null>(null);
+  const shareCardRef = useRef<HTMLDivElement | null>(null);
 
   const quizDeck = useMemo(
     () => buildQuizDeck(questions),
@@ -225,6 +252,13 @@ function App() {
   const canNativeShare =
     typeof navigator !== 'undefined' &&
     typeof navigator.share === 'function';
+  const canClipboardImage =
+    typeof navigator !== 'undefined' &&
+    !!navigator.clipboard &&
+    typeof navigator.clipboard.write === 'function' &&
+    typeof window !== 'undefined' &&
+    'ClipboardItem' in window;
+  const shareUrl = resultCode ? buildTypeShareUrl(resultCode) : '';
 
   const goToTab = useCallback((tab: Tab) => {
     setTypesDetailCode(null);
@@ -275,10 +309,17 @@ function App() {
     const emotional = getWinningLetter('emotional', nextAnswers);
     const social = getWinningLetter('social', nextAnswers);
     const code = `${cognitive}${emotional}${social}`;
+    const beastName = formatBeastDisplayName(getArchetypeBeast(code).beast);
     setQuizResultCode(code);
     setAnswers(nextAnswers);
     setScreen('result');
-    trackQuizResult(code);
+    trackQuizResult({
+      archetypeCode: code,
+      beastName,
+      cognitiveLetter: cognitive,
+      emotionalLetter: emotional,
+      socialLetter: social,
+    });
   };
 
   const chooseOption = (
@@ -303,36 +344,136 @@ function App() {
     setIndex((i) => i - 1);
   }, [index]);
 
+  const closeShareModal = useCallback(() => {
+    setShareModalOpen(false);
+    setShareNotice(null);
+  }, []);
+
+  const ensureShareImageBlob = useCallback(async (): Promise<Blob | null> => {
+    if (shareImageBlob) return shareImageBlob;
+    if (!shareCardRef.current) return null;
+    setShareBusy(true);
+    setShareNotice(null);
+    try {
+      if ('fonts' in document) {
+        await document.fonts.ready;
+      }
+      const blob = await toBlob(shareCardRef.current, {
+        cacheBust: true,
+        pixelRatio: 2,
+      });
+      if (!blob) {
+        setShareNotice('Could not generate image yet. Try again.');
+        return null;
+      }
+      setShareImageBlob(blob);
+      return blob;
+    } catch {
+      setShareNotice('Could not generate image yet. Try again.');
+      return null;
+    } finally {
+      setShareBusy(false);
+    }
+  }, [shareImageBlob]);
+
+  const openShareModal = useCallback(() => {
+    if (!resultCode) return;
+    setShareModalOpen(true);
+    setShareNotice(null);
+  }, [resultCode]);
+
+  const copyShareImage = useCallback(async () => {
+    if (!navigator.clipboard || !canClipboardImage) {
+      setShareNotice('Image copy is not supported in this browser.');
+      return;
+    }
+    const blob = await ensureShareImageBlob();
+    if (!blob) return;
+    try {
+      await navigator.clipboard.write([
+        new window.ClipboardItem({
+          'image/png': blob,
+        }),
+      ]);
+      setShareNotice('Image copied to clipboard.');
+    } catch {
+      setShareNotice('Could not copy image.');
+    }
+  }, [canClipboardImage, ensureShareImageBlob]);
+
+  const shareImageAndLink = useCallback(async () => {
+    if (!resultCode || !navigator.share) return;
+    const beastName = formatBeastDisplayName(getArchetypeBeast(resultCode).beast);
+    const blob = await ensureShareImageBlob();
+    const text = `I'm a ${beastName} (${resultCode}) on The Slightly Rude Personality Test.`;
+    if (!blob) {
+      try {
+        await navigator.share({
+          title: `${beastName} (${resultCode}) · The Slightly Rude Personality Test`,
+          text,
+          url: shareUrl,
+        });
+      } catch {
+        /* dismissed */
+      }
+      return;
+    }
+    const file = new File([blob], `slightly-rude-${resultCode}.png`, {
+      type: 'image/png',
+    });
+    const canShareFile =
+      typeof navigator.canShare === 'function' &&
+      navigator.canShare({ files: [file] });
+    try {
+      if (canShareFile) {
+        await navigator.share({
+          title: `${beastName} (${resultCode}) · The Slightly Rude Personality Test`,
+          text,
+          url: shareUrl,
+          files: [file],
+        });
+      } else {
+        await navigator.share({
+          title: `${beastName} (${resultCode}) · The Slightly Rude Personality Test`,
+          text,
+          url: shareUrl,
+        });
+        setShareNotice(
+          'Shared link; this browser does not support sharing image files.',
+        );
+      }
+    } catch {
+      /* dismissed */
+    }
+  }, [ensureShareImageBlob, resultCode, shareUrl]);
+
   const copyShareLink = () => {
     if (!resultCode) return;
     navigator.clipboard
       .writeText(buildTypeShareUrl(resultCode))
-      .catch(() => undefined);
-  };
-
-  const nativeShare = async () => {
-    if (!resultCode || !navigator.share) return;
-    const beastName = formatBeastDisplayName(getArchetypeBeast(resultCode).beast);
-    const url = buildTypeShareUrl(resultCode);
-    try {
-      await navigator.share({
-        title: `${beastName} (${resultCode}) · The Slightly Rude Personality Test`,
-        text: `I'm a ${beastName} (${resultCode}) on The Slightly Rude Personality Test.`,
-        url,
-      });
-    } catch {
-      /* dismissed or failed */
-    }
+      .then(() => setShareNotice('Link copied.'))
+      .catch(() => setShareNotice('Could not copy link.'));
   };
 
   useEffect(() => {
-    if (!typesDetailCode) return;
+    setShareModalOpen(false);
+    setShareImageBlob(null);
+    setShareNotice(null);
+  }, [resultCode]);
+
+  useEffect(() => {
+    if (!typesDetailCode && !shareModalOpen) return;
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') closeTypesModal();
+      if (e.key !== 'Escape') return;
+      if (shareModalOpen) {
+        closeShareModal();
+        return;
+      }
+      if (typesDetailCode) closeTypesModal();
     };
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
-  }, [typesDetailCode, closeTypesModal]);
+  }, [typesDetailCode, shareModalOpen, closeTypesModal, closeShareModal]);
 
   let typesModal: ReactNode = null;
   if (typesDetailCode) {
@@ -361,6 +502,61 @@ function App() {
             code={typesDetailCode}
             headingId="type-modal-title"
           />
+        </div>
+      </div>
+    );
+  }
+
+  let shareModal: ReactNode = null;
+  if (shareModalOpen && resultCode) {
+    shareModal = (
+      <div
+        className="share-modal-backdrop"
+        role="presentation"
+        onClick={closeShareModal}
+      >
+        <div
+          className="share-modal"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="share-modal-title"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <button
+            type="button"
+            className="share-modal-close"
+            onClick={closeShareModal}
+            aria-label="Close share card"
+          >
+            ×
+          </button>
+          <h3 id="share-modal-title">Share your result card</h3>
+          <ShareWrappedCard
+            code={resultCode}
+            className="share-wrapped--modal"
+            ref={shareCardRef}
+          />
+          <div className="share-modal-actions">
+            {canNativeShare ? (
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={() => void shareImageAndLink()}
+                disabled={shareBusy}
+              >
+                {shareBusy ? 'Preparing…' : 'Share'}
+              </button>
+            ) : null}
+            <button
+              type="button"
+              className="btn"
+              onClick={() => void copyShareImage()}
+              disabled={shareBusy}
+            >
+              Copy
+            </button>
+          </div>
+          {shareNotice ? <p className="share-modal-notice">{shareNotice}</p> : null}
         </div>
       </div>
     );
@@ -530,11 +726,9 @@ function App() {
                     <button className="btn" onClick={copyShareLink}>
                       Copy link
                     </button>
-                    {canNativeShare ? (
-                      <button className="btn" onClick={() => void nativeShare()}>
-                        Share…
-                      </button>
-                    ) : null}
+                    <button className="btn" onClick={openShareModal}>
+                      Share…
+                    </button>
                   </div>
                   <p className="result-share-hint">
                     Link opens the same archetype card (Personality Types) for
@@ -674,6 +868,7 @@ function App() {
       </div>
 
       {typesModal}
+      {shareModal}
     </div>
   );
 }

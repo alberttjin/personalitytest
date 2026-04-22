@@ -48,10 +48,20 @@ export function trackSpaPageView(): void {
 }
 
 /** Fire once when the quiz resolves to a three-letter archetype code. */
-export function trackQuizResult(archetypeCode: string): void {
+export function trackQuizResult(payload: {
+  archetypeCode: string;
+  beastName: string;
+  cognitiveLetter: string;
+  emotionalLetter: string;
+  socialLetter: string;
+}): void {
   if (!GA_ID || !window.gtag) return;
   window.gtag('event', 'quiz_complete', {
     send_to: GA_ID,
-    archetype_code: archetypeCode,
+    archetype_code: payload.archetypeCode,
+    archetype_beast: payload.beastName,
+    cognitive_letter: payload.cognitiveLetter,
+    emotional_letter: payload.emotionalLetter,
+    social_letter: payload.socialLetter,
   });
 }
