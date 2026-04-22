@@ -15,20 +15,20 @@ declare global {
   }
 }
 
-/** Load gtag + queue until script arrives (standard GA pattern). */
+/**
+ * Fallback only: `index.html` includes the official Google tag so setup tools see it.
+ * If that ran first, `window.gtag` exists — do not load gtag.js twice.
+ */
 export function initAnalytics(): void {
   if (!GA_ID || typeof window === 'undefined') return;
+  if (typeof window.gtag === 'function') return;
 
   window.dataLayer = window.dataLayer || [];
-  window.gtag =
-    window.gtag ||
-    function gtag(...args: unknown[]) {
-      (window.dataLayer as unknown[]).push(args);
-    };
-
+  window.gtag = function gtag(...args: unknown[]) {
+    (window.dataLayer as unknown[]).push(args);
+  };
   window.gtag('js', new Date());
   window.gtag('config', GA_ID, { send_page_view: false });
-
   const script = document.createElement('script');
   script.async = true;
   script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(GA_ID)}`;
